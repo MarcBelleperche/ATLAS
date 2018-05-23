@@ -38,7 +38,7 @@ public class Textread {
     int s = 0;
     int maxr = 0;
     int cleartime = 0;
-    int o;
+    static int o;
     int number[] = new int[100];
     int number1[] = new int[100];
     String test[] = new String[1000];
@@ -46,9 +46,8 @@ public class Textread {
     String Affichagetest[] = new String[1000];
     String Presenceperform[] = new String[1000];
     String Affichagesouscode[] = new String[1000];
-    String AffichagesouscodeWC[] = new String[1000];
-    String Definetab[] = new String[1000];
-    String definename[] = new String[1000];
+    static String Definetab[] = new String[1000];
+    static String definename[] = new String[1000];
     String[] decoup;
     DefaultMutableTreeNode entree = new DefaultMutableTreeNode("ENTRY");
     DefaultMutableTreeNode DEFINE = new DefaultMutableTreeNode("DEFINE");
@@ -71,7 +70,7 @@ public class Textread {
 
         String Introtext = " \nCette application a pour but de simplifier la lecture des programmes ATLAS \n " +
                 "Abbreviated Test Language for All Systems. Voici les différentes étapes à suivre : \n\n " +
-                "1 : Entrée la path votre fichier \n 2 : Appuyer sur Analysis \n 3 : Appuyer en suite 2 fois sur" +
+                "1 : Entrée la path votre fichier \n 2 : Appuyer sur Analysis \n 3 : Appuyer en suite sur" +
                 "fill the Tree \n 4 : Pour afficher les codes correspondants à chaque entrée cliquer sur celles-ci \n\n" +
                 "Les entrées ayant des sous entrées sont représentées par des dossiers\n Vous pouvez appuyer sur le bouton HELP a tout moment\n" +
                 "Les Perfom seront suligné en Jaune\n\n" +
@@ -131,7 +130,8 @@ public class Textread {
         ADD.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Filltree();
+               for (int nbfilltree=0; nbfilltree < 2; nbfilltree++)
+               {Filltree();}
             }
 
         });
@@ -188,7 +188,7 @@ public class Textread {
                     txt.setText(null);
                     Codetest();
                 } else {
-                    Enlevercomment();
+                    Enlevercomment(txt);
                 }
             }
         });
@@ -200,8 +200,7 @@ public class Textread {
                 super.mouseReleased(e);
                 String select = txt.getSelectedText();
                 if (txt.getSelectedText() != null) {
-                    JOptionPane.showMessageDialog(null, select);
-
+                    System.out.println(select);
                 }
 
 
@@ -212,6 +211,7 @@ public class Textread {
         DefineFrame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 JFrame frame2 = new JFrame("Perform/Define");
                 frame2.setContentPane(new Perform().Performpanel);
                 frame2.pack();
@@ -220,9 +220,7 @@ public class Textread {
                 frame2.setLocationRelativeTo(null);
 
                 Perform perform = new Perform();
-                JOptionPane.showMessageDialog(null, definename[1]);
-                String defin = definename[1];
-                perform.addnode();
+
 
 
             }
@@ -321,7 +319,7 @@ public class Textread {
                 DefaultMutableTreeNode newdefine = new DefaultMutableTreeNode(definename[o]);
                 DEFINE.add(newdefine);
                 model.reload();
-                codedef = "DEFINE" + o + "\n";
+                codedef = "DEFINE" + o + "  " +decoup[1] +"\n";
                 SandEdefine = 1;
                 o++;
             }
@@ -553,7 +551,7 @@ public class Textread {
         return -1;
     }
 
-    public void Enlevercomment() {
+    public void Enlevercomment(JTextArea txt) {
         StringBuilder sb = new StringBuilder();
         String[] lignes = txt.getText().split("\n");
         for (int nbl = 0; nbl < lignes.length; nbl++) {
@@ -573,47 +571,9 @@ public class Textread {
     }
 
 
-    /*static class Performframe extends Textread{
+    public String getDefinetab(int b) {
+        return Definetab[b];
+    }
 
-        JPanel Performpanel;
-        JTextArea Performcode;
-        JList PerformList;
-        Textread textread = new Textread();
-
-
-        public Performframe() {
-            addlist(definename[1]);
-
-        }
-
-
-
-        public void addlist (String nomajouter){
-
-            System.out.println(nomajouter);
-            modellist.addElement(nomajouter);
-            PerformList.setModel(modellist);
-        }
-
-
-        public static void main(String[] args) {
-
-            JFrame frame2 = new JFrame("Perform/Define");
-            frame2.setContentPane(new Performframe().Performpanel);
-            frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame2.pack();
-            frame2.setVisible(true);
-            frame2.setSize(800, 400);
-            frame2.setLocationRelativeTo(null);
-
-        }
-
-        public String[] Define(){
-        String [] define = textread.definename;
-            return define ;
-        }
-
-
-    }*/
 }
 
