@@ -2,7 +2,7 @@
   <artifact type="jar" name="AtlasappImprove:jar">
     <output-path>$PROJECT_DIR$/out/artifacts</output-path>
     <root id="archive" name="untitled104.jar">
-      <element id="module-output" name="untitled104" />
+      <element id="module-output" name="AtlasProject" />
     </root>
   </artifact>
 </component>

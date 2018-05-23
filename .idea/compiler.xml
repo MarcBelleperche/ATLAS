@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="untitled104" options="--add-exports=jdk.internal.vm.ci/jdk.vm.ci.meta=ALL-UNNAMED" />
+      <module name="AtlasProject" options="--add-exports=jdk.internal.vm.ci/jdk.vm.ci.meta=ALL-UNNAMED" />
     </option>
   </component>
 </project>
