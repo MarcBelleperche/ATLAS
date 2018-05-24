@@ -7,8 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51b026b7-d1f6-49f9-83cd-7ebca6975a28" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/MB2/belleperche/Perform.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MB2/belleperche/Perform.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MB2/belleperche/Perform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MB2/belleperche/Perform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MB2/belleperche/Textread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MB2/belleperche/Textread.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -24,20 +23,22 @@
       <file leaf-file-name="Textread.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="204" column="53" lean-forward="true" selection-start-line="204" selection-start-column="53" selection-end-line="204" selection-end-column="53" />
+            <state relative-caret-position="256">
+              <caret line="66" column="31" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5047#5313#0" expanded="true" />
-                <element signature="e#5312#5313#0" expanded="true" />
-                <element signature="e#5448#5449#0" expanded="true" />
-                <element signature="e#5502#5503#0" expanded="true" />
-                <element signature="e#6784#7294#0" expanded="true" />
-                <element signature="e#7293#7294#0" expanded="true" />
-                <element signature="e#20542#20543#0" expanded="true" />
-                <element signature="e#20579#20580#0" expanded="true" />
-                <element signature="e#20621#20622#0" expanded="true" />
-                <element signature="e#20656#20657#0" expanded="true" />
+                <element signature="e#5201#5467#0" expanded="true" />
+                <element signature="e#5466#5467#0" expanded="true" />
+                <element signature="e#5602#5603#0" expanded="true" />
+                <element signature="e#5656#5657#0" expanded="true" />
+                <element signature="e#6907#7243#0" expanded="true" />
+                <element signature="e#7242#7243#0" expanded="true" />
+                <element signature="e#16279#16280#0" expanded="true" />
+                <element signature="e#16315#16316#0" expanded="true" />
+                <element signature="e#19065#19066#0" expanded="true" />
+                <element signature="e#19102#19103#0" expanded="true" />
+                <element signature="e#19144#19145#0" expanded="true" />
+                <element signature="e#19179#19180#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -46,62 +47,13 @@
       <file leaf-file-name="Perform.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Perform.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="66" selection-start-line="66" selection-end-line="72" selection-end-column="9" />
+            <state relative-caret-position="319">
+              <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JRootPane.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JRootPane.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="597" selection-start-line="597" selection-end-line="597" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JFrame.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="678" selection-start-line="678" selection-end-line="678" />
-              <folding>
-                <element signature="e#24289#24290#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Perform.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Perform.form">
-          <provider selected="true" editor-type-id="ui-designer" />
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="51" lean-forward="true" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JTextArea.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JTextArea.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4140">
-              <caret line="322" column="57" selection-start-line="322" selection-start-column="57" selection-end-line="322" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Textread.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.form">
-          <provider selected="true" editor-type-id="ui-designer" />
         </entry>
       </file>
     </leaf>
@@ -152,7 +104,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
@@ -162,7 +114,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -192,7 +144,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -287,24 +239,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49757674" weight="0.32965517" />
-      <window_info anchor="bottom" id="Messages" order="3" sideWeight="0.27625203" weight="0.23586208" />
+      <window_info anchor="bottom" id="Messages" order="3" sideWeight="0.20355412" weight="0.23586208" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Image Layers" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.60743135" side_tool="true" visible="true" weight="0.20551725" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.677706" side_tool="true" visible="true" weight="0.20551725" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.32956383" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.39256865" visible="true" weight="0.20551725" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.32229403" visible="true" weight="0.20551725" />
       <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.49676898" weight="0.32965517" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49434572" weight="0.32965517" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4990991" visible="true" weight="0.315832" />
-      <window_info anchor="bottom" id="Find" order="5" sideWeight="0.49919224" weight="0.18896551" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4990991" visible="true" weight="0.3206785" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.24959612" />
       <window_info x="815" y="84" width="320" height="555" id="UI Designer" order="1" sideWeight="0.5009009" type="FLOATING" weight="0.25" />
@@ -318,6 +269,7 @@
       <window_info anchor="right" x="0" y="0" width="270" height="600" id="Documentation" order="8" side_tool="true" weight="0.32956383" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="5" sideWeight="0.49919224" weight="0.18896551" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -365,41 +317,22 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5047#5313#0" expanded="true" />
-            <element signature="e#5312#5313#0" expanded="true" />
-            <element signature="e#5448#5449#0" expanded="true" />
-            <element signature="e#5502#5503#0" expanded="true" />
-            <element signature="e#6784#7294#0" expanded="true" />
-            <element signature="e#7293#7294#0" expanded="true" />
-            <element signature="e#20542#20543#0" expanded="true" />
-            <element signature="e#20579#20580#0" expanded="true" />
-            <element signature="e#20621#20622#0" expanded="true" />
-            <element signature="e#20656#20657#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5047#5313#0" expanded="true" />
-            <element signature="e#5312#5313#0" expanded="true" />
-            <element signature="e#5448#5449#0" expanded="true" />
-            <element signature="e#5502#5503#0" expanded="true" />
-            <element signature="e#6784#7294#0" expanded="true" />
-            <element signature="e#7293#7294#0" expanded="true" />
-            <element signature="e#20542#20543#0" expanded="true" />
-            <element signature="e#20579#20580#0" expanded="true" />
-            <element signature="e#20621#20622#0" expanded="true" />
-            <element signature="e#20656#20657#0" expanded="true" />
+            <element signature="e#5201#5467#0" expanded="true" />
+            <element signature="e#5466#5467#0" expanded="true" />
+            <element signature="e#5602#5603#0" expanded="true" />
+            <element signature="e#5656#5657#0" expanded="true" />
+            <element signature="e#6907#7243#0" expanded="true" />
+            <element signature="e#7242#7243#0" expanded="true" />
+            <element signature="e#16279#16280#0" expanded="true" />
+            <element signature="e#16315#16316#0" expanded="true" />
+            <element signature="e#19065#19066#0" expanded="true" />
+            <element signature="e#19102#19103#0" expanded="true" />
+            <element signature="e#19144#19145#0" expanded="true" />
+            <element signature="e#19179#19180#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -421,21 +354,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/java/awt/EventQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="714" selection-start-line="714" selection-end-line="714" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/TESTATLAS.txt" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Scanner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="936" selection-start-line="936" selection-end-line="936" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/ScrollPaneConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -512,13 +431,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/AbstractButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="1876" column="12" selection-start-line="1876" selection-start-column="12" selection-end-line="1876" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JCheckBox.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -552,36 +464,25 @@
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/X.java" />
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/X.form" />
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/MainClass.java" />
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Performframe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Performframe.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Performframe.java" />
+    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Performframe.form" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="51" lean-forward="true" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
+          <caret line="2" column="51" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JRootPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
+        <state relative-caret-position="8250">
           <caret line="597" selection-start-line="597" selection-end-line="597" />
         </state>
       </provider>
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
+        <state relative-caret-position="9255">
           <caret line="678" selection-start-line="678" selection-end-line="678" />
           <folding>
             <element signature="e#24289#24290#0" expanded="true" />
@@ -589,15 +490,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/youyou.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/youyou.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/youyou.java" />
+    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/youyou.form" />
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Perform.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
@@ -610,30 +504,77 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Perform.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="66" selection-start-line="66" selection-end-line="72" selection-end-column="9" />
+        <state relative-caret-position="319">
+          <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/DefaultButtonModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="261" selection-start-line="261" selection-end-line="261" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Scanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="1650" selection-start-line="1650" selection-end-line="1650" />
+          <folding>
+            <element signature="e#56857#56858#0" expanded="true" />
+            <element signature="e#56915#56916#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/java/awt/EventQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="742" selection-start-line="742" selection-end-line="742" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/plaf/basic/BasicButtonListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="269" selection-start-line="269" selection-end-line="269" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/AbstractButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="2307" selection-start-line="2307" selection-end-line="2307" />
+          <folding>
+            <element signature="e#83030#83031#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="204" column="53" lean-forward="true" selection-start-line="204" selection-start-column="53" selection-end-line="204" selection-end-column="53" />
+        <state relative-caret-position="256">
+          <caret line="66" column="31" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5047#5313#0" expanded="true" />
-            <element signature="e#5312#5313#0" expanded="true" />
-            <element signature="e#5448#5449#0" expanded="true" />
-            <element signature="e#5502#5503#0" expanded="true" />
-            <element signature="e#6784#7294#0" expanded="true" />
-            <element signature="e#7293#7294#0" expanded="true" />
-            <element signature="e#20542#20543#0" expanded="true" />
-            <element signature="e#20579#20580#0" expanded="true" />
-            <element signature="e#20621#20622#0" expanded="true" />
-            <element signature="e#20656#20657#0" expanded="true" />
+            <element signature="e#5201#5467#0" expanded="true" />
+            <element signature="e#5466#5467#0" expanded="true" />
+            <element signature="e#5602#5603#0" expanded="true" />
+            <element signature="e#5656#5657#0" expanded="true" />
+            <element signature="e#6907#7243#0" expanded="true" />
+            <element signature="e#7242#7243#0" expanded="true" />
+            <element signature="e#16279#16280#0" expanded="true" />
+            <element signature="e#16315#16316#0" expanded="true" />
+            <element signature="e#19065#19066#0" expanded="true" />
+            <element signature="e#19102#19103#0" expanded="true" />
+            <element signature="e#19144#19145#0" expanded="true" />
+            <element signature="e#19179#19180#0" expanded="true" />
           </folding>
         </state>
       </provider>

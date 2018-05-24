@@ -2,7 +2,7 @@ package MB2.belleperche;
 
 import java.awt.Color;
 import java.awt.event.*;
-import java.io.File;
+import java.io.*;
 import java.util.Scanner;
 import javax.swing.*;
 import javax.swing.text.*;
@@ -21,14 +21,14 @@ public class Textread {
     private JTree TREE;
     private JTextArea txt;
     private JButton ADD;
-    private JProgressBar progressBar1;
+    JProgressBar progressBar1;
     private JButton Help;
     private JTextField WTS;
     private JButton LightDark;
     private JCheckBox Comment;
     private JButton DefineFrame;
     private Scanner scan;
-    private JList Perfromlist;
+    private BufferedReader readertext;
     int click = 0;
     int mbdefine = 0;
     int i = 0;
@@ -53,9 +53,6 @@ public class Textread {
     DefaultMutableTreeNode DEFINE = new DefaultMutableTreeNode("DEFINE");
     DefaultTreeModel model = (DefaultTreeModel) TREE.getModel();
 
-    DefaultListModel modelist = new DefaultListModel();
-
-
     private Highlighter.HighlightPainter hPainter = new HPainter(Color.YELLOW);
 
     public Textread() {
@@ -66,7 +63,8 @@ public class Textread {
         Color TBtree = TREE.getBackground();
         Color TFtree = TREE.getForeground();
         Color MFpanel = TREE.getForeground();
-
+        progressBar1.setMaximum(1000);
+        progressBar1.setValue(0);
 
         String Introtext = " \nCette application a pour but de simplifier la lecture des programmes ATLAS \n " +
                 "Abbreviated Test Language for All Systems. Voici les différentes étapes à suivre : \n\n " +
@@ -109,10 +107,17 @@ public class Textread {
 
                 try {
                     scan = new Scanner(new File(filename)); // Recherche du fichier texte
+                    readertext = new BufferedReader(new FileReader(filename));
+
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null, "Votre fichier est introuvable");
                 }
-                Affichage(); // Utilisation de la fonction Affichage
+
+
+                //Affichagewithscan(); // Utilisation de la fonction Affichage
+                Affichagewithbuffer();
+
+
             }
 
         });
@@ -130,8 +135,9 @@ public class Textread {
         ADD.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               for (int nbfilltree=0; nbfilltree < 2; nbfilltree++)
-               {Filltree();}
+                for (int nbfilltree = 0; nbfilltree < 2; nbfilltree++) {
+                    Filltree();
+                }
             }
 
         });
@@ -188,7 +194,10 @@ public class Textread {
                     txt.setText(null);
                     Codetest();
                 } else {
+                    String Perform = "PERFORM";
                     Enlevercomment(txt);
+                    addHighlight(txt, Perform, hPainter);
+
                 }
             }
         });
@@ -200,7 +209,7 @@ public class Textread {
                 super.mouseReleased(e);
                 String select = txt.getSelectedText();
                 if (txt.getSelectedText() != null) {
-                    System.out.println(select);
+                    JOptionPane.showMessageDialog(null, select);
                 }
 
 
@@ -220,7 +229,6 @@ public class Textread {
                 frame2.setLocationRelativeTo(null);
 
                 Perform perform = new Perform();
-
 
 
             }
@@ -251,117 +259,102 @@ public class Textread {
 
     }
 
-    public void Affichage() {
+    public void Affichagewithbuffer() {
+
         String code = "TITRE\n";                            // Definition d'une chaine de caractère
         String codedef = "FIRST DEFINE\n";
-        String titre;                                       // Definition d'une chaine de caractère
-        String action = "Code contenu dans chaque entrée";  // Definition d'une chaine de caractère
-        int nightynine = 99;
         int souscode = 0;                                    // Definition d'un int et initialisation à 0
-        int youyou = 0;
         int SandEdefine = 0;
-        titre = scan.nextLine();                            // La première ligne est entrée dans titre
-        while (scan.hasNextLine()) {                        // On scanne toutes les lignes jusqu'à la dernière
+        try {
+            String line;
+            while ((line = readertext.readLine()) != null) {
+                progressBar1.setValue(progressBar1.getValue()+1);
+                if (souscode == 0) {
+                    code = code + "\n" + line;
+                    Affichagetest[i] = code;                        // On rentre dans un tableau le code correspondant
 
-            //action = scan.nextLine();
-            //com = action.split("\\s");
-            int id[] = new int[0];                          // Définition d'un tableau int
-            String EorC = scan.next();                      // le permier caractère de la ligne est entré dans une variable
-
-            System.out.printf("%s", EorC);
-            for (int j = 0; j >= 6; j++) {
-                id[j] = scan.nextInt();                     // les 6 int suivants sont rentrés dans le tableau id
-
-                System.out.printf("%s", id[j]);
-            }
-            if (souscode == 0) {
-                action = scan.nextLine();                       // le reste de la ligne rentre dans action
-                code = code + "\n" + EorC + "  " + action;
-                Affichagetest[i] = code;                        // On rentre dans un tableau le code correspondant
-
-            } else if (souscode == 1) {
-                action = scan.nextLine();                   // le reste de la ligne rentre dans action
-                code = code + "\n" + EorC + "  " + action;
-                Affichagesouscode[r] = code;                // On rentre dans un tableau le code correspondant
-            }
-            System.out.printf("%s\n", action);
-
-            //String findefine = " END, '"+definename[o]+"' $";
-            //int nbfindefine = action.indexOf(findefine);
-
-            try {
-                youyou = Integer.parseInt(EorC);
-            } catch (NumberFormatException nfe) {
-                System.out.println("Ce n'est pas un entier");
-            }
-
-            if (SandEdefine == 1) {
-                codedef = codedef + "\n" + EorC + " " + action;
-                Definetab[o] = codedef;
-            }
-
-            if (youyou == nightynine) {
-                SandEdefine = 0;
-            }
-
-
-            String Define = "DEFINE";
-            String Define2 = " DEFINE";
-            String Define3 = "  DEFINE";
-            int nbdefine = action.indexOf(Define);
-            int nbdefine2 = action.indexOf(Define2);
-            int nbdefine3 = action.indexOf(Define3);
-
-            if (nbdefine == 1 || nbdefine2 == 1 || nbdefine3 == 1) {
-                decoup = action.split("\\'");
-                txt.append(decoup[1] + "\n");
-                definename[o] = decoup[1];
-                DefaultMutableTreeNode newdefine = new DefaultMutableTreeNode(definename[o]);
-                DEFINE.add(newdefine);
-                model.reload();
-                codedef = "DEFINE" + o + "  " +decoup[1] +"\n";
-                SandEdefine = 1;
-                o++;
-            }
-
-
-            String begin = "BEGIN";
-            String begin1 = " BEGIN";
-            String begin2 = "  BEGIN";
-            int tree = action.indexOf(begin2);
-            int two = action.indexOf(begin1);
-            int one = action.indexOf(begin);
-            if (one == 1 || two == 1 || tree == 1) {      // Si la ligne contient le mot Begin
-                souscode = 0;                               // souscode remis à 0
-                decoup = action.split("\\'");       // On découpe la ligne tout les '
-                number[i] = getnum2(decoup);              // Utilisation de getnum2(dépend de i)
-                number1[i] = getnum1(decoup);             // Utilisation de getnum1(dépend de i)
-                if (number[i] == 0) {                     // En fonction du résultat de getnum2(depend de de i)
-                    subnode[s] = 0;
-                    txt.append(decoup[1] + "\n");         // Affichage du nom du test dans la zone de text
-                    txt.append(action + "\n");            // Affichage de la ligne en entier dans la zone de text
-                    txt.append(number[i] + "\n");         // Affichage du retour de la fonction getnum2 (depend de i)
-                    test[i] = decoup[1];                  // On rentre le nom de test dans un tableau (depend de i)
-                    code = "TEST " + (number1[i]);        // On réinitialise la variable code (depend de i)
-                    System.out.println(test[i]);
-                    i++;                                  // On incrémente i
-                } else if (number[i] != 0) {
-                    souscode = 1;                           // la variable souscode vaut 1
-                    undernode[r] = decoup[1];             // On rentre le nom du sous test dans un tableau
-                    subnode[s] = 1;                         // la variable subnode vaut 1 (depend de s)
-                    txt.append(decoup[1] + "\n");
-                    txt.append(action + "\n");
-                    txt.append(number[i] + "\n");
-                    code = "TEST " + (number1[i]) + "." + (number[i]); // On réinitialise la variable code
-
-                    r++;                                  // Incrémentation de r
+                } else if (souscode == 1) {
+                    code = code + "\n" + line;
+                    Affichagesouscode[r] = code;                // On rentre dans un tableau le code correspondant
                 }
-                s++;                                     // Incrémentation de s
-            }
-        }
-        maxr = r;
 
+                if (SandEdefine == 1) {
+                    codedef = codedef + "\n" + line;
+                    Definetab[o] = codedef;
+                }
+
+                if (line.matches(".*END, '.*")) {
+                    SandEdefine = 0;
+                }
+
+                if (line.matches(".*DEFINE,.*")) {
+                    if (line.matches(".*PROCEDURE.*")) {
+                        decoup = line.split("\\'");
+                        txt.append(decoup[1] + "\n");
+                        definename[o] = decoup[1];
+                        DefaultMutableTreeNode newdefine = new DefaultMutableTreeNode(definename[o]);
+                        DEFINE.add(newdefine);
+                        model.reload();
+                        codedef = "DEFINE" + o + "  " + decoup[1] + "\n";
+                        SandEdefine = 1;
+                        o++;
+                    }
+                }
+
+                if (line.matches(".*BEGIN,.*")) {
+                    txt.append(line + "\n");
+                    if (line.matches(".*BEGIN, ATLAS MODULE.*")) {
+                        souscode = 0;
+                        subnode[s] = 0;
+                        txt.append(decoup[1] + "\n");         // Affichage du nom du test dans la zone de text
+                        txt.append(line + "\n");            // Affichage de la ligne en entier dans la zone de text
+                        txt.append(number[i] + "\n");         // Affichage du retour de la fonction getnum2 (depend de i)
+                        test[i] = decoup[1];                  // On rentre le nom de test dans un tableau (depend de i)
+                        code = "TEST " + i;        // On réinitialise la variable code (depend de i)
+                        System.out.println(test[i]);
+                        i++;                                  // On incrémente i
+
+
+                    } else if ((line.matches(".*BEGIN, BLOCK, '.*") || line.matches(".*BEGIN, ATLAS PROGRAM '.*"))) {
+                        souscode = 0;                               // souscode remis à 0
+                        decoup = line.split("\\'");       // On découpe la ligne tout les '
+                        number[i] = getnum2(decoup);              // Utilisation de getnum2(dépend de i)
+                        number1[i] = getnum1(decoup);             // Utilisation de getnum1(dépend de i)
+                        if (number[i] == 0) {                     // En fonction du résultat de getnum2(depend de de i)
+                            subnode[s] = 0;
+                            txt.append(decoup[1] + "\n");         // Affichage du nom du test dans la zone de text
+                            txt.append(line + "\n");            // Affichage de la ligne en entier dans la zone de text
+                            txt.append(number[i] + "\n");         // Affichage du retour de la fonction getnum2 (depend de i)
+                            test[i] = decoup[1];                  // On rentre le nom de test dans un tableau (depend de i)
+                            code = "TEST " + i;        // On réinitialise la variable code (depend de i)
+                            System.out.println(test[i]);
+                            i++;                                  // On incrémente i
+                        } else if (number[i] != 0) {
+                            souscode = 1;                           // la variable souscode vaut 1
+                            undernode[r] = decoup[1];             // On rentre le nom du sous test dans un tableau
+                            subnode[s] = 1;                         // la variable subnode vaut 1 (depend de s)
+                            txt.append(decoup[1] + "\n");
+                            txt.append(line + "\n");
+                            txt.append(number[i] + "\n");
+                            code = "TEST " + (number1[i]) + "." + (number[i]); // On réinitialise la variable code
+
+                            r++;                                  // Incrémentation de r
+                        }
+                        s++;                                     // Incrémentation de s
+
+                        maxr = r;
+
+
+                    }
+
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     public int getnum1(String tab[]) {
         int n = 0;
@@ -478,14 +471,6 @@ public class Textread {
         }
     }
 
-
-    public void Progressbar(int a) {
-        if (progressBar1.getValue() < a) {
-            progressBar1.setValue(progressBar1.getValue() + 1);
-        }
-    }
-
-
     public void Filltree() {
         r = 0;
         s = 0;
@@ -574,6 +559,4 @@ public class Textread {
     public String getDefinetab(int b) {
         return Definetab[b];
     }
-
 }
-
