@@ -30,27 +30,35 @@ public class Textread {
     private Scanner scan;
     private BufferedReader readertext;
     int click = 0;
-    int mbdefine = 0;
+    int nbperform=0;
+    int nbAtlasmodule = 0;
     int i = 0;
     int r = 0;
-    int adddefine = 0;
     int subnode[] = new int[100];
     int s = 0;
     int maxr = 0;
     int cleartime = 0;
-    static int o;
+    static int nbdefine;
+    static int nbrequire = 0;
     int number[] = new int[100];
     int number1[] = new int[100];
     String test[] = new String[1000];
     String undernode[] = new String[1000];
     String Affichagetest[] = new String[1000];
-    String Presenceperform[] = new String[1000];
+    String Alasmoduletab[] = new String[1000];
+    String Atlasmodulename[] = new String[1000];
+    String Requirename[] = new String[1000];
+    String Requirecode[] = new String[1000];
     String Affichagesouscode[] = new String[1000];
+    String Performname [] = new String[1000];
     static String Definetab[] = new String[1000];
     static String definename[] = new String[1000];
-    String[] decoup;
+    static String[] decoup;
     DefaultMutableTreeNode entree = new DefaultMutableTreeNode("ENTRY");
     DefaultMutableTreeNode DEFINE = new DefaultMutableTreeNode("DEFINE");
+    DefaultMutableTreeNode ATLASMODULE = new DefaultMutableTreeNode("ATLAS MODULE");
+    DefaultMutableTreeNode REQUIRE = new DefaultMutableTreeNode("REQUIRE");
+
     DefaultTreeModel model = (DefaultTreeModel) TREE.getModel();
 
     private Highlighter.HighlightPainter hPainter = new HPainter(Color.YELLOW);
@@ -207,13 +215,19 @@ public class Textread {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                String select = txt.getSelectedText();
-                if (txt.getSelectedText() != null) {
-                    JOptionPane.showMessageDialog(null, select);
-                }
+                /*if (txt.getSelectedText()!= null){
+                    for (int youy=0; youy<o;youy++){
+                        String name = definename[youy];
+                        if (txt.getSelectedText()==name){
+                            System.out.println("YOUOYU");
+                        }
 
+                    }
 
+                }*/
             }
+
+
         });
 
 
@@ -263,56 +277,123 @@ public class Textread {
 
         String code = "TITRE\n";                            // Definition d'une chaine de caractère
         String codedef = "FIRST DEFINE\n";
+        String codeAtlasmodule = "ATLAS MODULE\n";
+        String coderequire = "ATLAS REQUIRE\n";
         int souscode = 0;                                    // Definition d'un int et initialisation à 0
         int SandEdefine = 0;
+        int SandEAtlasmodule = 0;
+        int SandEBlock = 0;
+        int SandErequire = 0;
+
         try {
             String line;
             while ((line = readertext.readLine()) != null) {
                 progressBar1.setValue(progressBar1.getValue()+1);
-                if (souscode == 0) {
+
+                if ((souscode == 0)&&(SandEBlock == 1)) {
                     code = code + "\n" + line;
                     Affichagetest[i] = code;                        // On rentre dans un tableau le code correspondant
+                    /*if (line.matches(".* PERFORM, '.*")){
+                        decoup = line.split("\\'");
+                        Performname[nbperform] = decoup[1];
+                    }*/
 
-                } else if (souscode == 1) {
+                } else if ((souscode == 1)&&(SandEBlock==1)) {
                     code = code + "\n" + line;
+
                     Affichagesouscode[r] = code;                // On rentre dans un tableau le code correspondant
+                }
+
+                if (line.matches(".*END, BLOCK, '.*")){
+                    SandEBlock=0;
                 }
 
                 if (SandEdefine == 1) {
                     codedef = codedef + "\n" + line;
-                    Definetab[o] = codedef;
+                    Definetab[nbdefine] = codedef;
                 }
 
                 if (line.matches(".*END, '.*")) {
                     SandEdefine = 0;
                 }
 
+                if (SandErequire == 1) {
+                    coderequire = coderequire + "\n" + line;
+                    Requirecode[nbrequire] = coderequire;
+                }
+
+                if (line.matches(".*CNX .*")) {
+                    SandErequire = 0;
+                }
+
+
+                if (SandEAtlasmodule == 1) {
+                    codeAtlasmodule = codeAtlasmodule + "\n" + line;
+                    Alasmoduletab[nbAtlasmodule] = codeAtlasmodule;
+                }
+
+                if (line.matches(".*TERMINATE, ATLAS MODULE '.*")) {
+                    SandEAtlasmodule = 0;}
+
                 if (line.matches(".*DEFINE,.*")) {
-                    if (line.matches(".*PROCEDURE.*")) {
+                    if (line.matches(".*PROCEDURE .*")) {
                         decoup = line.split("\\'");
                         txt.append(decoup[1] + "\n");
-                        definename[o] = decoup[1];
-                        DefaultMutableTreeNode newdefine = new DefaultMutableTreeNode(definename[o]);
+                        definename[nbdefine] = decoup[1];
+                        DefaultMutableTreeNode newdefine = new DefaultMutableTreeNode(definename[nbdefine]);
                         DEFINE.add(newdefine);
                         model.reload();
-                        codedef = "DEFINE" + o + "  " + decoup[1] + "\n";
+                        codedef = "DEFINE" + nbdefine + "  " + decoup[1] + "\n";
                         SandEdefine = 1;
-                        o++;
+                        nbdefine++;
                     }
                 }
 
+
+                    if (line.matches(".*REQUIRE, '.*")) {
+                        decoup = line.split("\\'");
+                        System.out.println(decoup[1]);
+                        txt.append(decoup[1] + "\n");
+                        Requirename[nbrequire] = decoup[1];
+                        DefaultMutableTreeNode newrequire = new DefaultMutableTreeNode(Requirename[nbrequire]);
+                        REQUIRE.add(newrequire);
+                        model.reload();
+                        coderequire = "REQUIRE" + nbrequire + "  " + decoup[1] + "\n";
+                        SandErequire = 1;
+                        nbrequire++;
+                    }
+
+                if (line.startsWith("E")&&line.matches(".*EQ 0.*")){
+                        souscode = 0;                               // souscode remis à 0
+                        decoup = line.split("\\'");       // On découpe la ligne tout les '
+                        number[i] = getnum2(decoup);              // Utilisation de getnum2(dépend de i)
+                        number1[i] = getnum1(decoup);             // Utilisation de getnum1(dépend de i)
+                        if (number[i] == 0) {                     // En fonction du résultat de getnum2(depend de de i)
+                            subnode[s] = 0;
+                            txt.append(decoup[1] + "\n");         // Affichage du nom du test dans la zone de text
+                            txt.append(line + "\n");            // Affichage de la ligne en entier dans la zone de text
+                            txt.append(number[i] + "\n");         // Affichage du retour de la fonction getnum2 (depend de i)
+                            test[i] = decoup[1];                  // On rentre le nom de test dans un tableau (depend de i)
+                            code = "TEST " + i;        // On réinitialise la variable code (depend de i)
+                            System.out.println(test[i]);
+                            SandEBlock = 1;
+                            i++;
+                        }
+
+                        }
+
                 if (line.matches(".*BEGIN,.*")) {
                     txt.append(line + "\n");
-                    if (line.matches(".*BEGIN, ATLAS MODULE.*")) {
-                        souscode = 0;
-                        subnode[s] = 0;
-                        txt.append(decoup[1] + "\n");         // Affichage du nom du test dans la zone de text
-                        txt.append(line + "\n");            // Affichage de la ligne en entier dans la zone de text
-                        txt.append(number[i] + "\n");         // Affichage du retour de la fonction getnum2 (depend de i)
-                        test[i] = decoup[1];                  // On rentre le nom de test dans un tableau (depend de i)
-                        code = "TEST " + i;        // On réinitialise la variable code (depend de i)
-                        System.out.println(test[i]);
-                        i++;                                  // On incrémente i
+                    if (line.matches(".*BEGIN, ATLAS MODULE '.*")) {
+                        decoup = line.split("\\'");
+                        txt.append(decoup[1] + "\n");
+                        Atlasmodulename[nbAtlasmodule] = decoup[1];
+                        DefaultMutableTreeNode newAtlasModule = new DefaultMutableTreeNode(Atlasmodulename[nbAtlasmodule]);
+                        ATLASMODULE.add(newAtlasModule);
+                        model.reload();
+                        codeAtlasmodule = "ATLAS MODULE" + nbAtlasmodule + "  " + decoup[1] + "\n";
+                        SandEAtlasmodule = 1;
+                        nbAtlasmodule++;
 
 
                     } else if ((line.matches(".*BEGIN, BLOCK, '.*") || line.matches(".*BEGIN, ATLAS PROGRAM '.*"))) {
@@ -328,6 +409,7 @@ public class Textread {
                             test[i] = decoup[1];                  // On rentre le nom de test dans un tableau (depend de i)
                             code = "TEST " + i;        // On réinitialise la variable code (depend de i)
                             System.out.println(test[i]);
+                            SandEBlock = 1;
                             i++;                                  // On incrémente i
                         } else if (number[i] != 0) {
                             souscode = 1;                           // la variable souscode vaut 1
@@ -336,6 +418,7 @@ public class Textread {
                             txt.append(decoup[1] + "\n");
                             txt.append(line + "\n");
                             txt.append(number[i] + "\n");
+                            SandEBlock = 1;
                             code = "TEST " + (number1[i]) + "." + (number[i]); // On réinitialise la variable code
 
                             r++;                                  // Incrémentation de r
@@ -348,7 +431,6 @@ public class Textread {
                     }
 
                 }
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -412,7 +494,7 @@ public class Textread {
         String Perform = "PERFORM";
         if (selectNode != null) {
             System.out.println(V);
-            for (int z = 0; z < i; z++) {
+            for (int z = 0; z < 999999; z++) {
                 if (V == test[z]) {
                     txt.append(Affichagetest[z + 1]);
                     addHighlight(txt, Perform, hPainter);
@@ -422,8 +504,12 @@ public class Textread {
                 } else if (V == definename[z]) {
                     txt.append(definename[z] + "\n" + Definetab[z + 1]);
                     addHighlight(txt, Perform, hPainter);
-                } else i++;
-
+                } else if (V == Atlasmodulename[z]) {
+                    txt.append(Atlasmodulename[z] + "\n" + Alasmoduletab[z + 1]);
+                    addHighlight(txt, Perform, hPainter);
+                } else if (V == Requirename[z]){
+                    txt.append(Requirename[z] + "\n" + Requirecode[z + 1]);
+                }
             }
         }
     }
@@ -493,6 +579,8 @@ public class Textread {
                 V = Addanode(a);
                 if (a == 0) {
                     V.add(DEFINE);
+                    V.add(ATLASMODULE);
+                    V.add(REQUIRE);
                 }
                 s++;
                 if (subnode[s] == 1) {
@@ -559,4 +647,5 @@ public class Textread {
     public String getDefinetab(int b) {
         return Definetab[b];
     }
+
 }

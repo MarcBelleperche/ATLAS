@@ -53,7 +53,7 @@ class Perform extends Textread {
 
 public void addnode(){
 
-    for (int nbp=0; nbp < o ; nbp ++) {
+    for (int nbp=0; nbp < nbdefine ; nbp ++) {
         model1.addElement(textread.getDefinename(nbp));
     }
     Performlist.setModel(model1);
@@ -65,11 +65,11 @@ public void addcode(){
     String V = selectname.toString();
     if (selectname != null){
         System.out.println(V);
-        for (int codeperform=0; codeperform < o; codeperform++ ){
+        for (int codeperform=0; codeperform < nbdefine; codeperform++ ){
 
             if (V == definename[codeperform]){
                 Performcode.append(textread.getDefinetab(codeperform + 1));
-            } else o++;
+            } else nbdefine++;
         }
     }
     }
