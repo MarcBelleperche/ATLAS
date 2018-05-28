@@ -1,6 +1,6 @@
 package MB2.belleperche;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.Scanner;
@@ -30,7 +30,8 @@ public class Textread {
     private Scanner scan;
     private BufferedReader readertext;
     int click = 0;
-    int nbperform=0;
+    int nbperform = 0;
+    int nbsousperform = 0;
     int nbAtlasmodule = 0;
     int i = 0;
     int r = 0;
@@ -50,10 +51,12 @@ public class Textread {
     String Requirename[] = new String[1000];
     String Requirecode[] = new String[1000];
     String Affichagesouscode[] = new String[1000];
-    String Performname [] = new String[1000];
+    String Performname[][] ;// = new String[1000];
+    String SousPerformname[][] ;//= new String[1000];
     static String Definetab[] = new String[1000];
     static String definename[] = new String[1000];
     static String[] decoup;
+    static String select;
     DefaultMutableTreeNode entree = new DefaultMutableTreeNode("ENTRY");
     DefaultMutableTreeNode DEFINE = new DefaultMutableTreeNode("DEFINE");
     DefaultMutableTreeNode ATLASMODULE = new DefaultMutableTreeNode("ATLAS MODULE");
@@ -122,7 +125,6 @@ public class Textread {
                 }
 
 
-                //Affichagewithscan(); // Utilisation de la fonction Affichage
                 Affichagewithbuffer();
 
 
@@ -158,6 +160,7 @@ public class Textread {
                 txt.setText(null);
                 Comment.setSelected(true);
                 Codetest();
+
 
             }
 
@@ -205,29 +208,8 @@ public class Textread {
                     String Perform = "PERFORM";
                     Enlevercomment(txt);
                     addHighlight(txt, Perform, hPainter);
-
                 }
             }
-        });
-
-
-        txt.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
-                /*if (txt.getSelectedText()!= null){
-                    for (int youy=0; youy<o;youy++){
-                        String name = definename[youy];
-                        if (txt.getSelectedText()==name){
-                            System.out.println("YOUOYU");
-                        }
-
-                    }
-
-                }*/
-            }
-
-
         });
 
 
@@ -245,6 +227,34 @@ public class Textread {
                 Perform perform = new Perform();
 
 
+            }
+        });
+
+        txt.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                String perform = "PERFORM";
+                if (e.getClickCount() == 2) {
+                    select = txt.getSelectedText();
+                    for (int yaaaaaaa = 0; yaaaaaaa < nbdefine; yaaaaaaa++) {
+                        String tou = definename[yaaaaaaa];
+                        System.out.println(select);
+                        System.out.println(tou);
+                        int youyt = select.indexOf(tou);
+                        if (youyt == -1) {
+                            System.out.println("OUI OUI OUI");
+                        } else
+                            {
+                                txt.setText(null);
+                                txt.setText(Definetab[yaaaaaaa+1]);
+                                addHighlight(txt, perform, hPainter);
+
+                            }
+
+
+                    }
+                }
             }
         });
     }
@@ -284,103 +294,97 @@ public class Textread {
         int SandEAtlasmodule = 0;
         int SandEBlock = 0;
         int SandErequire = 0;
+        int waitforprocedure=0;
 
         try {
             String line;
             while ((line = readertext.readLine()) != null) {
-                progressBar1.setValue(progressBar1.getValue()+1);
+                progressBar1.setValue(progressBar1.getValue() + 1);
 
-                if ((souscode == 0)&&(SandEBlock == 1)) {
+                if ((souscode == 0) && (SandEBlock == 1)) {
                     code = code + "\n" + line;
                     Affichagetest[i] = code;                        // On rentre dans un tableau le code correspondant
-                    /*if (line.matches(".* PERFORM, '.*")){
-                        decoup = line.split("\\'");
-                        Performname[nbperform] = decoup[1];
-                    }*/
+                    }
 
-                } else if ((souscode == 1)&&(SandEBlock==1)) {
+                 else if ((souscode == 1) && (SandEBlock == 1)) {
                     code = code + "\n" + line;
-
                     Affichagesouscode[r] = code;                // On rentre dans un tableau le code correspondant
                 }
 
-                if (line.matches(".*END, BLOCK, '.*")){
-                    SandEBlock=0;
-                }
+                if (line.matches(".*END, BLOCK, '.*")) {SandEBlock = 0;}
 
-                if (SandEdefine == 1) {
-                    codedef = codedef + "\n" + line;
-                    Definetab[nbdefine] = codedef;
-                }
+                if (SandEdefine == 1) { codedef = codedef + "\n" + line;
+                    Definetab[nbdefine] = codedef; }
 
-                if (line.matches(".*END, '.*")) {
-                    SandEdefine = 0;
-                }
+                if (line.matches(".*END, '.*")) { SandEdefine = 0; }
 
-                if (SandErequire == 1) {
-                    coderequire = coderequire + "\n" + line;
-                    Requirecode[nbrequire] = coderequire;
-                }
+                if (SandErequire == 1) { coderequire = coderequire + "\n" + line;
+                    Requirecode[nbrequire] = coderequire; }
 
-                if (line.matches(".*CNX .*")) {
-                    SandErequire = 0;
-                }
+                if (line.matches(".*CNX .*")) { SandErequire = 0; }
 
 
-                if (SandEAtlasmodule == 1) {
-                    codeAtlasmodule = codeAtlasmodule + "\n" + line;
-                    Alasmoduletab[nbAtlasmodule] = codeAtlasmodule;
-                }
+                if (SandEAtlasmodule == 1) { codeAtlasmodule = codeAtlasmodule + "\n" + line;
+                    Alasmoduletab[nbAtlasmodule] = codeAtlasmodule; }
 
-                if (line.matches(".*TERMINATE, ATLAS MODULE '.*")) {
-                    SandEAtlasmodule = 0;}
+                if (line.matches(".*TERMINATE, ATLAS MODULE '.*")) { SandEAtlasmodule = 0; }
+
 
                 if (line.matches(".*DEFINE,.*")) {
-                    if (line.matches(".*PROCEDURE .*")) {
-                        decoup = line.split("\\'");
-                        txt.append(decoup[1] + "\n");
-                        definename[nbdefine] = decoup[1];
-                        DefaultMutableTreeNode newdefine = new DefaultMutableTreeNode(definename[nbdefine]);
-                        DEFINE.add(newdefine);
-                        model.reload();
-                        codedef = "DEFINE" + nbdefine + "  " + decoup[1] + "\n";
-                        SandEdefine = 1;
-                        nbdefine++;
-                    }
+                    decoup = line.split("\\'");
+                    txt.append(decoup[1] + "\n");
+                    definename[nbdefine] = decoup[1];
+                    waitforprocedure=1;
                 }
 
 
-                    if (line.matches(".*REQUIRE, '.*")) {
-                        decoup = line.split("\\'");
-                        System.out.println(decoup[1]);
-                        txt.append(decoup[1] + "\n");
-                        Requirename[nbrequire] = decoup[1];
-                        DefaultMutableTreeNode newrequire = new DefaultMutableTreeNode(Requirename[nbrequire]);
-                        REQUIRE.add(newrequire);
-                        model.reload();
-                        coderequire = "REQUIRE" + nbrequire + "  " + decoup[1] + "\n";
-                        SandErequire = 1;
-                        nbrequire++;
+                if (line.matches(".*PROCEDURE.*")&&(waitforprocedure==1)) {
+                    DefaultMutableTreeNode newdefine = new DefaultMutableTreeNode(definename[nbdefine]);
+                    DEFINE.add(newdefine);
+                    model.reload();
+                    codedef = "DEFINE" + nbdefine + "  " + decoup[1] + "\n";
+                    SandEdefine = 1;
+                    waitforprocedure = 0;
+                    nbdefine++;
+                }
+
+
+
+
+
+                if (line.matches(".*REQUIRE, '.*")) {
+                    decoup = line.split("\\'");
+                    System.out.println(decoup[1]);
+                    txt.append(decoup[1] + "\n");
+                    Requirename[nbrequire] = decoup[1];
+                    DefaultMutableTreeNode newrequire = new DefaultMutableTreeNode(Requirename[nbrequire]);
+                    REQUIRE.add(newrequire);
+                    model.reload();
+                    coderequire = "REQUIRE" + nbrequire + "  " + decoup[1] + "\n";
+                    SandErequire = 1;
+                    nbrequire++;
+                }
+
+                if (line.startsWith("E") && line.matches(".*EQ 0.*")) {
+                    souscode = 0;                               // souscode remis à 0
+                    decoup = line.split("\\'");       // On découpe la ligne tout les '
+                    number[i] = getnum2(decoup);              // Utilisation de getnum2(dépend de i)
+                    number1[i] = getnum1(decoup);             // Utilisation de getnum1(dépend de i)
+                    if (number[i] == 0) {                     // En fonction du résultat de getnum2(depend de de i)
+                        subnode[s] = 0;
+                        txt.append(decoup[1] + "\n");         // Affichage du nom du test dans la zone de text
+                        txt.append(line + "\n");            // Affichage de la ligne en entier dans la zone de text
+                        txt.append(number[i] + "\n");         // Affichage du retour de la fonction getnum2 (depend de i)
+                        test[i] = decoup[1];                  // On rentre le nom de test dans un tableau (depend de i)
+                        code = "TEST " + i;        // On réinitialise la variable code (depend de i)
+                        System.out.println(test[i]);
+                        SandEBlock = 1;
+                        i++;
+                        nbperform = 0;
                     }
 
-                if (line.startsWith("E")&&line.matches(".*EQ 0.*")){
-                        souscode = 0;                               // souscode remis à 0
-                        decoup = line.split("\\'");       // On découpe la ligne tout les '
-                        number[i] = getnum2(decoup);              // Utilisation de getnum2(dépend de i)
-                        number1[i] = getnum1(decoup);             // Utilisation de getnum1(dépend de i)
-                        if (number[i] == 0) {                     // En fonction du résultat de getnum2(depend de de i)
-                            subnode[s] = 0;
-                            txt.append(decoup[1] + "\n");         // Affichage du nom du test dans la zone de text
-                            txt.append(line + "\n");            // Affichage de la ligne en entier dans la zone de text
-                            txt.append(number[i] + "\n");         // Affichage du retour de la fonction getnum2 (depend de i)
-                            test[i] = decoup[1];                  // On rentre le nom de test dans un tableau (depend de i)
-                            code = "TEST " + i;        // On réinitialise la variable code (depend de i)
-                            System.out.println(test[i]);
-                            SandEBlock = 1;
-                            i++;
-                        }
+                }
 
-                        }
 
                 if (line.matches(".*BEGIN,.*")) {
                     txt.append(line + "\n");
@@ -411,6 +415,7 @@ public class Textread {
                             System.out.println(test[i]);
                             SandEBlock = 1;
                             i++;                                  // On incrémente i
+                            nbperform = 0;
                         } else if (number[i] != 0) {
                             souscode = 1;                           // la variable souscode vaut 1
                             undernode[r] = decoup[1];             // On rentre le nom du sous test dans un tableau
@@ -420,8 +425,8 @@ public class Textread {
                             txt.append(number[i] + "\n");
                             SandEBlock = 1;
                             code = "TEST " + (number1[i]) + "." + (number[i]); // On réinitialise la variable code
-
                             r++;                                  // Incrémentation de r
+                            nbsousperform = 0;
                         }
                         s++;                                     // Incrémentation de s
 
@@ -434,6 +439,12 @@ public class Textread {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                readertext.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -480,6 +491,11 @@ public class Textread {
         if (!test[i].trim().equals("")) {
             entree.add(etr);
             model.reload();
+            for (int youyou= 0; youyou < nbperform; youyou++ ){
+                DefaultMutableTreeNode perform = new DefaultMutableTreeNode(Performname[youyou]);
+                etr.add(perform);
+                model.reload();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "It doesn't Work MOTHERFUCKER");
         }
@@ -507,7 +523,7 @@ public class Textread {
                 } else if (V == Atlasmodulename[z]) {
                     txt.append(Atlasmodulename[z] + "\n" + Alasmoduletab[z + 1]);
                     addHighlight(txt, Perform, hPainter);
-                } else if (V == Requirename[z]){
+                } else if (V == Requirename[z]) {
                     txt.append(Requirename[z] + "\n" + Requirecode[z + 1]);
                 }
             }
@@ -646,6 +662,10 @@ public class Textread {
 
     public String getDefinetab(int b) {
         return Definetab[b];
+    }
+
+    public void Affichageperform(){
+
     }
 
 }
