@@ -13,20 +13,22 @@ import javax.swing.tree.*;
 
 public class Textread {
 
-    JPanel mainPanel;
+    private JPanel mainPanel;
     private JTextField entrytext;
     private JButton Textread;
     private JButton Analisys;
     private JButton Search;
     private JTree TREE;
     private JTextArea txt;
+    private JTextArea highlight;
     private JButton ADD;
-    JProgressBar progressBar1;
+    private JProgressBar progressBar1;
     private JButton Help;
     private JTextField WTS;
     private JButton LightDark;
     private JCheckBox Comment;
     private JButton DefineFrame;
+    private JButton back;
     private BufferedReader readertext;
     int click = 0;
     int nbperform = 0;
@@ -37,13 +39,17 @@ public class Textread {
     int r = 0;
     int subnode[] = new int[100];
     int s = 0;
+    int numb = 0;
     int maxr = 0;
     int maxnb = 0;
     int cleartime = 0;
+    int presencemotrecherche1[] = new int[1000];int presencemotrecherche2[]= new int[1000];int presencemotrecherche3[]= new int[1000];
+    int presencemotrecherche4[]= new int[1000];int presencemotrecherche5[]= new int[1000];
     static int nbdefine=0;
     static int nbrequire = 0;
     int number[] = new int[100];
     int number1[] = new int[100];
+    static String Mot;
     String test[] = new String[1000];
     String undernode[] = new String[1000];
     String Affichagetest[] = new String[1000];
@@ -63,10 +69,13 @@ public class Textread {
     DefaultMutableTreeNode REQUIRE = new DefaultMutableTreeNode("REQUIRE");
     DefaultMutableTreeNode Performdoss[] = new DefaultMutableTreeNode[1000];
     DefaultMutableTreeNode Drawing = new DefaultMutableTreeNode("DRAWING");
+    DefaultMutableTreeNode newinfo[] = new DefaultMutableTreeNode[1000];
 
     DefaultTreeModel model = (DefaultTreeModel) TREE.getModel();
 
     private Highlighter.HighlightPainter hPainter = new HPainter(Color.YELLOW);
+    private Highlighter.HighlightPainter redpainter = new HPainter(Color.RED);
+
 
     public Textread() {
         DefaultTreeModel model = (DefaultTreeModel) TREE.getModel();
@@ -137,9 +146,57 @@ public class Textread {
         Search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String Mot = WTS.getText().toUpperCase();
-                addHighlight(txt, Mot, hPainter);
-            }
+                Mot = WTS.getText().toUpperCase();
+                    addHighlight(txt, Mot, redpainter);
+                String searchword = "Occurence du mot " + Mot + " dans les dossiers suivants :";
+
+                    for (int z = 0; z < i; z++) {
+                        if (Mot != null) {
+                            numb = Affichagetest[z + 1].indexOf(Mot);
+                            if (numb != -1) {
+                                presencemotrecherche1[z] = 1;
+                                String colornode = entree.getChildAt(z).toString();
+                                searchword = searchword + "\n" + colornode;
+                            }
+                        }
+                    }
+                for (int z = 0; z < maxr; z++) {
+                    if (Mot != null) {
+                        numb = Affichagesouscode[z + 1].indexOf(Mot);
+                        if (numb != -1) {
+                            presencemotrecherche2[z] = 1;
+                            String colornode = newinfo[z].toString();
+                            searchword =searchword +"\n"+ colornode ;
+                        }
+                    }
+                }
+
+                for (int z = 0; z < nbdefine; z++) {
+                    if (Mot != null) {
+                        numb = Definetab[z + 1].indexOf(Mot);
+                        if (numb != -1) {
+                            presencemotrecherche3[z] = 1;
+                            String colornode = DEFINE.getChildAt(z).toString();
+                            searchword = searchword +"\n" +DEFINE.toString() +": "+colornode ;
+                        }
+                    }
+                }
+
+                JOptionPane.showMessageDialog(null , searchword);
+                /*
+                        if (Mot != null) {
+                            int numb = Alasmoduletab[z + 1].indexOf(Mot);
+                            if (numb == 0) {
+                                presencemotrecherche4[z] = 1;
+                            }
+                        }
+                        if (Mot != null) {
+                            int numb = Requirecode[z + 1].indexOf(Mot);
+                            if (numb == 0) {
+                                presencemotrecherche5[z] = 1;
+                            }
+                        }*/
+                }
         });
 
 
@@ -162,10 +219,7 @@ public class Textread {
                 Comment.setSelected(true);
                 int youyou = Performdoss[2].getChildCount();
                 System.out.println(youyou);
-
                 Codetest();
-
-
             }
 
         });
@@ -258,6 +312,22 @@ public class Textread {
                 }
             }
         });
+
+
+
+
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txt.setText(null);
+                Codetest();
+            }
+        });
+
+
+
+
+
     }
 
 
@@ -279,8 +349,13 @@ public class Textread {
         root.removeAllChildren();
         root.add(entree);
         entree.removeAllChildren();
+        DEFINE.removeAllChildren();
+        ATLASMODULE.removeAllChildren();
+        REQUIRE.removeAllChildren();
         i = 0;
         nb = 0;
+        nbperform=0;nbAtlasmodule=0;nbdefine=0;nbrequire=0;
+
         model.reload();
         cleartime = cleartime + 1;
 
@@ -555,18 +630,19 @@ public class Textread {
             for (int z = 0; z < 999999; z++) {
                 if (V == test[z]) {
                     txt.append(Affichagetest[z + 1]);
-                    addHighlight(txt, Perform, hPainter);
+                    addHighlight(txt, Mot, redpainter);
                 } else if (V == undernode[z]) {
                     txt.append(Affichagesouscode[z + 1]);
-                    addHighlight(txt, Perform, hPainter);
+                    addHighlight(txt, Mot, redpainter);
                 } else if (V == definename[z]) {
                     txt.append(definename[z] + "\n" + Definetab[z + 1]);
-                    addHighlight(txt, Perform, hPainter);
-                } else if (V == Atlasmodulename[z]) {
+                    addHighlight(txt, Mot, redpainter);
+            } else if (V == Atlasmodulename[z]) {
                     txt.append(Atlasmodulename[z] + "\n" + Alasmoduletab[z + 1]);
-                    addHighlight(txt, Perform, hPainter);
+                    addHighlight(txt, Mot, redpainter);
                 } else if (V == Requirename[z]) {
                     txt.append(Requirename[z] + "\n" + Requirecode[z + 1]);
+                    addHighlight(txt, Mot, redpainter);
                 }
                 else if (V == Performname[z]) {
                     for (int per=0; per < nbdefine ;per++){
@@ -574,8 +650,8 @@ public class Textread {
                         int you = Performname[z].indexOf(definetitle);
                         if(you==-1){}
                         else{
-                    txt.append(Performname[z] + "\n" + Definetab[per+1]);}}
-                    addHighlight(txt, Perform, hPainter);
+                    txt.append(Performname[z] + "\n" + Definetab[per+1]);}
+                    addHighlight(txt, Mot, redpainter);}
                 }
 
             }
@@ -583,16 +659,13 @@ public class Textread {
     }
 
 
-    public void addHighlight(final JTextComponent tcomp, final String word, Highlighter.HighlightPainter youyou) {
-        // Supprime les anciens
-        removeHighlights(tcomp);
-
+    public void  addHighlight(final JTextComponent tcomp, final String word, Highlighter.HighlightPainter youyou) {
+        removeHighlights(tcomp);// Supprime les anciens
         try {
             final Highlighter h = tcomp.getHighlighter();
             final Document doc = tcomp.getDocument();
             final String fullText = doc.getText(0, doc.getLength());
             int pos = 0;
-
             // Recherche du "word"
             while ((pos = fullText.indexOf(word, pos)) >= 0) {
                 // Ajout du nouveau painter
@@ -603,7 +676,6 @@ public class Textread {
         } catch (final BadLocationException e) {
             e.printStackTrace();
         }
-
     }
 
     // Supprime les HighlightPainter de type HPainter
@@ -637,8 +709,8 @@ public class Textread {
                     while (subnode[s] == 1) {
                         System.out.println("OK");
                         DefaultTreeModel model = (DefaultTreeModel) TREE.getModel();
-                        DefaultMutableTreeNode newinfo = new DefaultMutableTreeNode(undernode[r]);
-                        V.add(newinfo);
+                        newinfo[r] = new DefaultMutableTreeNode(undernode[r]);
+                        V.add(newinfo[r]);
                         model.reload();
                         r++;
                         s++;
@@ -734,9 +806,10 @@ public class Textread {
                         model.reload();
                     }
                 }
-
-
         }
     }
 
+
+
 }
+
