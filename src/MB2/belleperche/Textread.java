@@ -4,9 +4,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.text.*;
 import javax.swing.tree.*;
+
+import static java.awt.Font.BOLD;
+import static java.awt.Font.getFont;
 
 //import static jdk.vm.ci.meta.JavaKind.Char;
 
@@ -18,9 +23,8 @@ public class Textread {
     private JButton Textread;
     private JButton Analisys;
     private JButton Search;
-    private JTree TREE;
+    JTree TREE;
     private JTextArea txt;
-    private JTextArea highlight;
     private JButton ADD;
     private JProgressBar progressBar1;
     private JButton Help;
@@ -39,17 +43,17 @@ public class Textread {
     int r = 0;
     int subnode[] = new int[100];
     int s = 0;
-    int numb = 0;
     int maxr = 0;
     int maxnb = 0;
     int cleartime = 0;
     int presencemotrecherche1[] = new int[1000];int presencemotrecherche2[]= new int[1000];int presencemotrecherche3[]= new int[1000];
     int presencemotrecherche4[]= new int[1000];int presencemotrecherche5[]= new int[1000];
-    static int nbdefine=0;
+    static int nbdefine;
     static int nbrequire = 0;
+    static int nbFdefinie;
     int number[] = new int[100];
     int number1[] = new int[100];
-    static String Mot;
+    static String Mot = null;
     String test[] = new String[1000];
     String undernode[] = new String[1000];
     String Affichagetest[] = new String[1000];
@@ -146,13 +150,14 @@ public class Textread {
         Search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String perform = "PERFORM";
                 Mot = WTS.getText().toUpperCase();
-                    addHighlight(txt, Mot, redpainter);
+                addHighlight(txt, perform,Mot, hPainter,redpainter);
                 String searchword = "Occurence du mot " + Mot + " dans les dossiers suivants :";
 
                     for (int z = 0; z < i; z++) {
                         if (Mot != null) {
-                            numb = Affichagetest[z + 1].indexOf(Mot);
+                            int numb = Affichagetest[z + 1].indexOf(Mot);
                             if (numb != -1) {
                                 presencemotrecherche1[z] = 1;
                                 String colornode = entree.getChildAt(z).toString();
@@ -162,18 +167,18 @@ public class Textread {
                     }
                 for (int z = 0; z < maxr; z++) {
                     if (Mot != null) {
-                        numb = Affichagesouscode[z + 1].indexOf(Mot);
+                        int numb = Affichagesouscode[z + 1].indexOf(Mot);
                         if (numb != -1) {
                             presencemotrecherche2[z] = 1;
                             String colornode = newinfo[z].toString();
-                            searchword =searchword +"\n"+ colornode ;
+                            searchword = searchword + "\n"+ colornode ;
                         }
                     }
                 }
 
                 for (int z = 0; z < nbdefine; z++) {
                     if (Mot != null) {
-                        numb = Definetab[z + 1].indexOf(Mot);
+                        int numb = Definetab[z + 1].indexOf(Mot);
                         if (numb != -1) {
                             presencemotrecherche3[z] = 1;
                             String colornode = DEFINE.getChildAt(z).toString();
@@ -182,21 +187,31 @@ public class Textread {
                     }
                 }
 
-                JOptionPane.showMessageDialog(null , searchword);
-                /*
-                        if (Mot != null) {
-                            int numb = Alasmoduletab[z + 1].indexOf(Mot);
-                            if (numb == 0) {
-                                presencemotrecherche4[z] = 1;
-                            }
+                for (int z = 0; z < nbAtlasmodule; z++) {
+                    if (Mot != null) {
+                        int numb = Alasmoduletab[z + 1].indexOf(Mot);
+                        if (numb != -1) {
+                            presencemotrecherche4[z] = 1;
+                            String colornode = ATLASMODULE.getChildAt(z).toString();
+                            searchword = searchword +"\n" +ATLASMODULE.toString() +": "+colornode ;
                         }
-                        if (Mot != null) {
-                            int numb = Requirecode[z + 1].indexOf(Mot);
-                            if (numb == 0) {
-                                presencemotrecherche5[z] = 1;
-                            }
-                        }*/
+                    }
                 }
+
+                for (int z = 0; z < nbrequire; z++) {
+                    if (Mot != null) {
+                        int numb = Requirecode[z + 1].indexOf(Mot);
+                        if (numb != -1) {
+                            presencemotrecherche5[z] = 1;
+                            String colornode = REQUIRE.getChildAt(z).toString();
+                            searchword = searchword +"\n" +REQUIRE.toString() +": "+colornode ;
+                        }
+                    }
+                }
+
+                JOptionPane.showMessageDialog(null , searchword);
+
+            }
         });
 
 
@@ -265,7 +280,7 @@ public class Textread {
                 } else {
                     String Perform = "PERFORM";
                     Enlevercomment(txt);
-                    addHighlight(txt, Perform, hPainter);
+                    addHighlight(txt, Perform,Mot, hPainter,redpainter);
                 }
             }
         });
@@ -303,7 +318,7 @@ public class Textread {
                         } else {
                             txt.setText(null);
                             txt.setText(Definetab[yaaaaaaa + 1]);
-                            addHighlight(txt, perform, hPainter);
+                            addHighlight(txt, perform,Mot, hPainter,redpainter);
 
                         }
 
@@ -541,6 +556,8 @@ public class Textread {
 
                 }
             }
+
+            nbFdefinie = nbdefine;
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -597,6 +614,7 @@ public class Textread {
         if (!test[i].trim().equals("")) {
             entree.add(etr);
             model.reload();
+            //Removedouble(Performdoss[nb+1]);
             DefaultMutableTreeNode Perform = Performdoss[nb+1];
 
             /*for (int nbper = 0; nbper < Performdoss[nb+1].getChildCount() ; nbper++){
@@ -611,6 +629,7 @@ public class Textread {
             }*/
 
            etr.add(Performdoss[nb+1]);
+           model.reload();
         } else {
             JOptionPane.showMessageDialog(null, "It doesn't Work MOTHERFUCKER");
         }
@@ -630,19 +649,19 @@ public class Textread {
             for (int z = 0; z < 999999; z++) {
                 if (V == test[z]) {
                     txt.append(Affichagetest[z + 1]);
-                    addHighlight(txt, Mot, redpainter);
+                    addHighlight(txt, Mot, Perform, redpainter,hPainter);
                 } else if (V == undernode[z]) {
                     txt.append(Affichagesouscode[z + 1]);
-                    addHighlight(txt, Mot, redpainter);
+                    addHighlight(txt, Mot,Perform, redpainter,hPainter);
                 } else if (V == definename[z]) {
                     txt.append(definename[z] + "\n" + Definetab[z + 1]);
-                    addHighlight(txt, Mot, redpainter);
+                    addHighlight(txt, Mot,Perform, redpainter,hPainter);
             } else if (V == Atlasmodulename[z]) {
                     txt.append(Atlasmodulename[z] + "\n" + Alasmoduletab[z + 1]);
-                    addHighlight(txt, Mot, redpainter);
+                    addHighlight(txt, Mot,Perform, redpainter,hPainter);
                 } else if (V == Requirename[z]) {
                     txt.append(Requirename[z] + "\n" + Requirecode[z + 1]);
-                    addHighlight(txt, Mot, redpainter);
+                    addHighlight(txt, Mot,Perform, redpainter,hPainter);
                 }
                 else if (V == Performname[z]) {
                     for (int per=0; per < nbdefine ;per++){
@@ -650,8 +669,8 @@ public class Textread {
                         int you = Performname[z].indexOf(definetitle);
                         if(you==-1){}
                         else{
-                    txt.append(Performname[z] + "\n" + Definetab[per+1]);}
-                    addHighlight(txt, Mot, redpainter);}
+                    txt.append(Performname[z] + "\n" + Definetab[per+1]);
+                    addHighlight(txt, Mot,Perform, redpainter,hPainter);}}
                 }
 
             }
@@ -659,7 +678,7 @@ public class Textread {
     }
 
 
-    public void  addHighlight(final JTextComponent tcomp, final String word, Highlighter.HighlightPainter youyou) {
+    public void  addHighlight(final JTextComponent tcomp, final String word,final String word2, Highlighter.HighlightPainter youyou,Highlighter.HighlightPainter youyou2) {
         removeHighlights(tcomp);// Supprime les anciens
         try {
             final Highlighter h = tcomp.getHighlighter();
@@ -672,6 +691,13 @@ public class Textread {
                 h.addHighlight(pos, pos + word.length(), youyou);
                 // On avance pour la suite
                 pos += word.length();
+            }
+
+            while ((pos = fullText.indexOf(word2, pos)) >= 0) {
+                // Ajout du nouveau painter
+                h.addHighlight(pos, pos + word2.length(), youyou2);
+                // On avance pour la suite
+                pos += word2.length();
             }
         } catch (final BadLocationException e) {
             e.printStackTrace();
@@ -783,8 +809,8 @@ public class Textread {
         txt.setText(sb.toString());
     }
 
-    public String getDefinename(int nb) {
-        return definename[nb];
+    public String getDefinename(int nbr) {
+        return definename[nbr];
     }
 
 
@@ -809,7 +835,41 @@ public class Textread {
         }
     }
 
+    public void Removedouble(DefaultMutableTreeNode perfor){
+
+        int nbchil = perfor.getChildCount();
+        System.out.println("MAX "+maxnb + "  " + nbchil);
+        DefaultMutableTreeNode Performance = perfor;
+        String enfant[] = new String[1000];
+        String suitedenfant = null;
+        for (int chil=0; chil < nbchil ;chil ++){
+            enfant[chil] =Performance.getChildAt(chil).toString();
+            suitedenfant = suitedenfant + " " + Performance.getChildAt(chil).toString();
+
+        for (int chilou=0; chilou < nbchil ;chilou ++) {
+            int regexo = regexOccur(suitedenfant, enfant[chil]);
+            if (regexo > 2){
+                    System.out.println("Remove child " + chil + " " + regexo);
+                    Performance.remove(chil);
+                    model.reload();
+                    nbchil--;
+            }
+                }
+
+            }
+    }
+
+    public int regexOccur(String text, String regex) {
+        Matcher matcher = Pattern.compile(regex).matcher(text);
+        int occur = 0;
+        while(matcher.find()) {
+            occur ++;
+        }
+        return occur;
+    }
 
 
 }
+
+
 

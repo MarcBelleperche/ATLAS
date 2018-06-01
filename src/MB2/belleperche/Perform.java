@@ -19,7 +19,9 @@ class Perform extends Textread {
     Textread textread = new Textread();
 
     public Perform(){
-        Performcode.setText("Selectionner une procédure");
+
+
+        Performcode.setText("Selectionner une procédure parmis les " +nbFdefinie + " du programme");
         addnode();
 
         Performlist.addListSelectionListener(
@@ -53,8 +55,8 @@ class Perform extends Textread {
 
 public void addnode(){
 
-    for (int nbp=0; nbp < nbdefine ; nbp ++) {
-        model1.addElement(textread.getDefinename(nbp));
+    for (int nbp=0; nbp < nbFdefinie ; nbp ++) {
+        model1.addElement(textread.getDefinename(nbp+1));
     }
     Performlist.setModel(model1);
 }
@@ -65,11 +67,11 @@ public void addcode(){
     String V = selectname.toString();
     if (selectname != null){
         System.out.println(V);
-        for (int codeperform=0; codeperform < nbdefine; codeperform++ ){
+        for (int codeperform=0; codeperform < nbFdefinie; codeperform++ ){
 
             if (V == definename[codeperform]){
                 Performcode.append(textread.getDefinetab(codeperform + 1));
-            } else nbdefine++;
+            }
         }
     }
     }
