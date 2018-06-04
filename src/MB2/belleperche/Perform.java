@@ -13,7 +13,7 @@ class Perform extends Textread {
     JPanel Performpanel;
     JTextArea Performcode;
     JList Performlist;
-    private JCheckBox comment;
+    private JCheckBox comment2;
     DefaultListModel model1 = new DefaultListModel();
 
     Textread textread = new Textread();
@@ -28,17 +28,17 @@ class Perform extends Textread {
                 new ListSelectionListener() {
                     @Override
                     public void valueChanged(ListSelectionEvent e) {
-                        comment.setSelected(true);
+                        comment2.setSelected(true);
                         Performcode.setText(null);
                         addcode();
                     }
                 });
 
 
-        comment.addActionListener(new ActionListener() {
+        comment2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (comment.isSelected()){
+                if (comment2.isSelected()){
                     Performcode.setText(null);
                     addcode();
                 }
@@ -56,7 +56,7 @@ class Perform extends Textread {
 public void addnode(){
 
     for (int nbp=0; nbp < nbFdefinie ; nbp ++) {
-        model1.addElement(textread.getDefinename(nbp+1));
+        model1.addElement(textread.getDefinename(nbp));
     }
     Performlist.setModel(model1);
 }
