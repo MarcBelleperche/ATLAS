@@ -8,23 +8,20 @@
   <component name="ChangeListManager">
     <list default="true" id="51b026b7-d1f6-49f9-83cd-7ebca6975a28" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/AtlasExaminator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/AtlasExaminator.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$HPainter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$HPainter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread$HPainter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AtlasProject/MB2/belleperche/Textread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MB2/belleperche/Textread.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MB2/belleperche/Textread.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MB2/belleperche/Textread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MB2/belleperche/Textread.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -40,27 +37,56 @@
       <file leaf-file-name="Textread.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="705" column="54" lean-forward="true" selection-start-line="705" selection-start-column="54" selection-end-line="705" selection-end-column="54" />
+            <state relative-caret-position="326">
+              <caret line="139" column="13" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#11426#11796#0" expanded="true" />
-                <element signature="e#11795#11796#0" expanded="true" />
-                <element signature="e#32574#32575#0" expanded="true" />
-                <element signature="e#32610#32611#0" expanded="true" />
-                <element signature="e#36833#36834#0" expanded="true" />
-                <element signature="e#36871#36872#0" expanded="true" />
-                <element signature="e#36913#36914#0" expanded="true" />
-                <element signature="e#36948#36949#0" expanded="true" />
+                <element signature="e#12081#12451#0" expanded="true" />
+                <element signature="e#12450#12451#0" expanded="true" />
+                <element signature="e#12586#12587#0" expanded="true" />
+                <element signature="e#12640#12641#0" expanded="true" />
+                <element signature="e#13666#14483#0" expanded="true" />
+                <element signature="e#14482#14483#0" expanded="true" />
+                <element signature="e#14516#15296#0" expanded="true" />
+                <element signature="e#15295#15296#0" expanded="true" />
+                <element signature="e#15552#15745#0" expanded="true" />
+                <element signature="e#15744#15745#0" expanded="true" />
+                <element signature="e#15776#16006#0" expanded="true" />
+                <element signature="e#16005#16006#0" expanded="true" />
+                <element signature="e#36716#36717#0" expanded="true" />
+                <element signature="e#36752#36753#0" expanded="true" />
+                <element signature="e#39054#39055#0" expanded="true" />
+                <element signature="e#39092#39093#0" expanded="true" />
+                <element signature="e#39134#39135#0" expanded="true" />
+                <element signature="e#39169#39170#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="DefaultTreeCellRenderer.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/tree/DefaultTreeCellRenderer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1031">
+              <caret line="168" column="32" lean-forward="true" selection-start-line="168" selection-start-column="32" selection-end-line="168" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#11234#11235#0" expanded="true" />
+                <element signature="e#11279#11280#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Textread.form" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.form">
+          <provider selected="true" editor-type-id="ui-designer" />
+        </entry>
+      </file>
       <file leaf-file-name="Perform.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Perform.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
+            <state relative-caret-position="735">
               <caret line="54" selection-start-line="54" selection-end-line="54" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -118,12 +144,13 @@
         <option value="$PROJECT_DIR$/src/MB2/belleperche/Perform.form" />
         <option value="$PROJECT_DIR$/src/MB2/belleperche/Perform.java" />
         <option value="$PROJECT_DIR$/src/MB2/belleperche/Seracher.java" />
-        <option value="$PROJECT_DIR$/src/MB2/belleperche/Textread.form" />
         <option value="$PROJECT_DIR$/src/MB2/belleperche/SearchWord.java" />
         <option value="$PROJECT_DIR$/src/MB2/belleperche/Searchword.java" />
         <option value="$PROJECT_DIR$/src/MB2/belleperche/Searchword.form" />
         <option value="$PROJECT_DIR$/src/MB2/belleperche/test.java" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/MB2/belleperche/Textread.form" />
+        <option value="$PROJECT_DIR$/src/MB2/belleperche/youyou.java" />
         <option value="$PROJECT_DIR$/src/MB2/belleperche/Textread.java" />
       </list>
     </option>
@@ -143,7 +170,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -166,8 +195,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -210,16 +237,6 @@
         </pattern>
       </extension>
     </configuration>
-    <configuration name="Seracher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MB2.belleperche.Seracher" />
-      <module name="AtlasProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="MB2.belleperche.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
     <configuration name="Textread" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MB2.belleperche.Textread" />
       <module name="AtlasProject" />
@@ -233,12 +250,10 @@
     <list>
       <item itemvalue="Application.Textread" />
       <item itemvalue="Application.Perform" />
-      <item itemvalue="Application.Seracher" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Textread" />
-        <item itemvalue="Application.Seracher" />
         <item itemvalue="Application.Perform" />
       </list>
     </recent_temporary>
@@ -279,18 +294,18 @@
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49757674" weight="0.32965517" />
-      <window_info anchor="bottom" id="Messages" order="3" sideWeight="0.26655897" weight="0.23586208" />
+      <window_info anchor="bottom" id="Messages" order="3" sideWeight="0.21567044" weight="0.23586208" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Image Layers" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.6914378" side_tool="true" visible="true" weight="0.38068965" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.7092084" side_tool="true" visible="true" weight="0.21655172" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.32956383" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.3085622" visible="true" weight="0.38068965" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.2907916" visible="true" weight="0.21655172" />
       <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.4951535" weight="0.32965517" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49353796" weight="0.32965517" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4990991" visible="true" weight="0.3990307" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.4990991" visible="true" weight="0.40549272" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.24959612" />
       <window_info x="815" y="84" width="320" height="555" id="UI Designer" order="1" sideWeight="0.5009009" type="FLOATING" weight="0.25" />
@@ -350,8 +365,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Arbre.java" />
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Entery.java" />
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
@@ -461,7 +474,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/youyou.java" />
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/youyou.form" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/tree/DefaultMutableTreeNode.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -562,12 +574,9 @@
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Searchword.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Perform.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
+        <state relative-caret-position="735">
           <caret line="54" selection-start-line="54" selection-end-line="54" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -575,20 +584,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/java/awt/Window.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="705" column="54" lean-forward="true" selection-start-line="705" selection-start-column="54" selection-end-line="705" selection-end-column="54" />
+        <state relative-caret-position="78">
+          <caret line="817" column="16" selection-start-line="817" selection-start-column="16" selection-end-line="817" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/youyou.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="30" column="31" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#11426#11796#0" expanded="true" />
-            <element signature="e#11795#11796#0" expanded="true" />
-            <element signature="e#32574#32575#0" expanded="true" />
-            <element signature="e#32610#32611#0" expanded="true" />
-            <element signature="e#36833#36834#0" expanded="true" />
-            <element signature="e#36871#36872#0" expanded="true" />
-            <element signature="e#36913#36914#0" expanded="true" />
-            <element signature="e#36948#36949#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/tree/DefaultTreeCellRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1031">
+          <caret line="168" column="32" lean-forward="true" selection-start-line="168" selection-start-column="32" selection-end-line="168" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#11234#11235#0" expanded="true" />
+            <element signature="e#11279#11280#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MB2/belleperche/Textread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="139" column="13" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#12081#12451#0" expanded="true" />
+            <element signature="e#12450#12451#0" expanded="true" />
+            <element signature="e#12586#12587#0" expanded="true" />
+            <element signature="e#12640#12641#0" expanded="true" />
+            <element signature="e#13666#14483#0" expanded="true" />
+            <element signature="e#14482#14483#0" expanded="true" />
+            <element signature="e#14516#15296#0" expanded="true" />
+            <element signature="e#15295#15296#0" expanded="true" />
+            <element signature="e#15552#15745#0" expanded="true" />
+            <element signature="e#15744#15745#0" expanded="true" />
+            <element signature="e#15776#16006#0" expanded="true" />
+            <element signature="e#16005#16006#0" expanded="true" />
+            <element signature="e#36716#36717#0" expanded="true" />
+            <element signature="e#36752#36753#0" expanded="true" />
+            <element signature="e#39054#39055#0" expanded="true" />
+            <element signature="e#39092#39093#0" expanded="true" />
+            <element signature="e#39134#39135#0" expanded="true" />
+            <element signature="e#39169#39170#0" expanded="true" />
           </folding>
         </state>
       </provider>
