@@ -3,22 +3,14 @@ package MB2.belleperche;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Scanner;
-import java.util.function.BiPredicate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.*;
 import javax.swing.tree.*;
 
-import static java.awt.Font.TRUETYPE_FONT;
 import static java.awt.Font.getFont;
 
 //import static jdk.vm.ci.meta.JavaKind.Char;
@@ -43,14 +35,14 @@ class Textread {
     private JButton back;
     private JButton SearchFile;
     private BufferedReader readertext;
+
     int z1=0;
     int nbperform = 0;
     int nb = 0;
     int nbsous = 0;
     int okperf = 0;
-    int enter = 0;
     int oksousper = 0;
-    static int nbAtlasmodule = 0;
+    int nbAtlasmodule = 0;
     int i = 0;
     int r = 0;
     int subnode[] = new int[100];
@@ -71,9 +63,9 @@ class Textread {
     boolean presencemotrecherche5[] = new boolean[1000];
     boolean presencemotrecherche6[] = new boolean[1000];
     static int nbdefine;
-    static int nbdrawing = 0;
-    static int nbrequire = 0;
-    static int nbFdefinie;
+    int nbdrawing = 0;
+    int nbrequire = 0;
+    int nbFdefinie = 0;
     int number[] = new int[100];
     int number1[] = new int[100];
     static int nbperforms;
@@ -94,7 +86,10 @@ class Textread {
     static String definename[] = new String[1000];
     static String[] decoup;
     static String select;
-    DefaultMutableTreeNode entree = new DefaultMutableTreeNode("ENTRY");
+
+
+
+    DefaultMutableTreeNode entree = new DefaultMutableTreeNode("ENTRY",true);
     DefaultMutableTreeNode DEFINE = new DefaultMutableTreeNode("DEFINE/PROCEDURE");
     DefaultMutableTreeNode ATLASMODULE = new DefaultMutableTreeNode("ATLAS MODULE");
     DefaultMutableTreeNode REQUIRE = new DefaultMutableTreeNode("REQUIRE");
@@ -103,7 +98,15 @@ class Textread {
     DefaultMutableTreeNode Drawing = new DefaultMutableTreeNode("DEFINE/DRAWING");
     DefaultMutableTreeNode newinfo[] = new DefaultMutableTreeNode[1000];
     DefaultMutableTreeNode node = new DefaultMutableTreeNode();
-    DefaultMutableTreeNode Yournode = new DefaultMutableTreeNode();
+
+
+
+    DefaultMutableTreeNode testnode = new DefaultMutableTreeNode("TEST");
+
+    String testnodetext = "youyou";
+
+    DefaultMutableTreeNode testnodete = new DefaultMutableTreeNode(testnodetext);
+
 
     DefaultTreeModel model = (DefaultTreeModel) TREE.getModel();
 
@@ -127,7 +130,7 @@ class Textread {
                 "Les Perfom seront suligné en Jaune\n\n" +
                 "Si vous chercher un mot rentré le dans le champs en bas\n\n" +
                 "Puis appuyé sur Search pour surligner toutes les occurences de ce mot";
-        txt.setText(Introtext);
+        txt.setText(Introtext); // Initialise la zone de texte txt avec le texte d'explication
 
         Cleartree();
 
@@ -202,19 +205,21 @@ class Textread {
                     Mot = WTS.getText().toUpperCase();
                     addHighlight(txt, Mot, redpainter);
                     searchword = "Occurence du mot " + Mot + " dans les dossiers suivants :";
+                    DefaultMutableTreeNode colord = new DefaultMutableTreeNode();
 
                     for (int z = 0; z < i; z++) {
                         if (Mot != null) {
                             int numb = Affichagetest[z + 1].indexOf(Mot);
                             if (numb != -1) {
-                                presencemotrecherche1[z] = true;
+                                //presencemotrecherche1[z] = true;
                                 String colornode = entree.getChildAt(z).toString();
                                 searchword = searchword + "\n" + colornode;
-
+                                 //entree.getChildAt(z);
+                                //colord.setAllowsChildren(flagged=true);
                                 //Searching(test[z]);
-
-
                             }
+
+
                         }
                     }
                     for ( z1 = 0; z1 < maxr; z1++) {
@@ -224,10 +229,12 @@ class Textread {
                                 String colornode = newinfo[z1].toString();
                                 //newinfo[z1]
                                 searchword = searchword + "\n" + colornode;
-                                flagged = true;
-                                Searching(undernode[z1]);
+                                //colord = Searching(undernode[z1]);
+                               // colord.setAllowsChildren(flagged=true);
+
                             }
-                            else{flagged =false;}
+                            //else colord = newinfo[z1];colord.setAllowsChildren(flagged=false);
+
                         }
                     }
 
@@ -235,24 +242,28 @@ class Textread {
                         if (Mot != null) {
                             int numb = Definetab[z + 1].indexOf(Mot);
                             if (numb != -1) {
-                                presencemotrecherche3[z] = true;
+                                //presencemotrecherche3[z] = true;
                                 String colornode = DEFINE.getChildAt(z).toString();
                                 searchword = searchword + "\n" + DEFINE.toString() + ": " + colornode;
+
+
+                              //  colord = Searching(definename[z]);
+                            //colord.setAllowsChildren(flagged=true);
                                 }
 
-                                Searching(definename[z]);
+                           // else colord = (DefaultMutableTreeNode) DEFINE.getChildAt(z);colord.setAllowsChildren(flagged=false);
 
-                            }
+                        }
                         }
 
                     for (int z = 0; z < nbAtlasmodule; z++) {
                         if (Mot != null) {
                             int numb = Alasmoduletab[z + 1].indexOf(Mot);
                             if (numb != -1) {
-                                presencemotrecherche4[z] = true;
+                                //presencemotrecherche4[z] = true;
                                 String colornode = ATLASMODULE.getChildAt(z).toString();
                                 searchword = searchword + "\n" + ATLASMODULE.toString() + ": " + colornode;
-                                Searching(Atlasmodulename[z]);
+                               //Searching(Atlasmodulename[z]);
                             }
                         }
                     }
@@ -261,10 +272,10 @@ class Textread {
                         if (Mot != null) {
                             int numb = Requirecode[z + 1].indexOf(Mot);
                             if (numb != -1) {
-                                presencemotrecherche5[z] = true;
+                                //presencemotrecherche5[z] = true;
                                 String colornode = REQUIRE.getChildAt(z).toString();
                                 searchword = searchword + "\n" + REQUIRE.toString() + ": " + colornode;
-                                Searching(Requirename[z]);
+                               // Searching(Requirename[z]);
                             }
                         }
                     }
@@ -273,26 +284,39 @@ class Textread {
                         if (Mot != null) {
                             int numb = Drawingcode[z + 1].indexOf(Mot);
                             if (numb != -1) {
-                                presencemotrecherche6[z] = true;
+                                //presencemotrecherche6[z] = true;
                                 String colornode = Drawing.getChildAt(z).toString();
                                 searchword = searchword + "\n" + Drawing.toString() + ": " + colornode;
-                                Searching(Drawingname[z]);
+                                //Searching(Drawingname[z]);
+
 
                             }
                         }
                     }
 
+                    if (Mot != null) {
+                        int numb = testnodetext.indexOf(Mot);
+                        if (numb != -1) {
+
+                            //Searching(testnodetext);
+                            //testnodete.setUserObject(flagged=true);
+                           // testnodete.setAllowsChildren(flagged=true);
+                        }
+
+                       // else testnodete.setAllowsChildren(flagged = false);
+                    }
 
 
 
-                    /*JFrame frame3 = new JFrame("Perform/Define");
+
+                    JFrame frame3 = new JFrame("Perform/Define");
                     frame3.setContentPane(new Searchword().Findpanel);
                     frame3.pack();
                     frame3.setVisible(true);
                     frame3.setSize(800, 400);
                     frame3.setLocationRelativeTo(null);
 
-                    Searchword searchword = new Searchword();*/
+                    Searchword searchword = new Searchword();
 
                 }
             }
@@ -302,12 +326,19 @@ class Textread {
             @Override
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
                                                           boolean leaf, int row, boolean hasFocus) {
-                JLabel label = (JLabel)super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+                JLabel label = (JLabel) super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
                 DefaultMutableTreeNode nodes = (DefaultMutableTreeNode) value;
-                if (flagged ==true) label.setForeground(Color.RED);
+
+                if (nodes.getAllowsChildren()==flagged) {
+                    label.setForeground(Color.RED);
+                    //nodes.setAllowsChildren(true);
+                }
+
+                //else label.setForeground(Color.BLACK);setTextSelectionColor(Color.white);
+
 
                 return label;
-            }
+                }
         });
 
 
@@ -329,8 +360,6 @@ class Textread {
                 super.mousePressed(e);
                 txt.setText(null);
                 Comment.setSelected(true);
-                int youyou = Performdoss[2].getChildCount();
-                System.out.println(youyou);
                 Codetest();
             }
 
@@ -383,14 +412,14 @@ class Textread {
                 String perform = "PERFORM";
                 if (e.getClickCount() == 2) {
                     select = txt.getSelectedText();
-                    for (int yaaaaaaa = 0; yaaaaaaa < nbFdefinie; yaaaaaaa++) {
-                        String tou = definename[yaaaaaaa];
+                    for (int count = 0; count < nbFdefinie; count++) {
+                        String tou = definename[count];
                         int youyt = select.indexOf(tou);
                         if (youyt == -1) {
 
                         } else {
                             txt.setText(null);
-                            txt.setText(Definetab[yaaaaaaa + 1]);
+                            txt.setText(Definetab[count + 1]);
                             addHighlight(txt, Mot, redpainter);
                         }
 
@@ -406,14 +435,14 @@ class Textread {
                 super.mouseReleased(e);
                 if (txt.getSelectedText() != null) {
                     select = txt.getSelectedText();
-                    for (int yaaaaaaa = 0; yaaaaaaa < nbFdefinie; yaaaaaaa++) {
-                        String tou = definename[yaaaaaaa];
+                    for (int count = 0; count < nbFdefinie; count++) {
+                        String tou = definename[count];
                         int youyt = select.indexOf(tou);
                         if (youyt == -1) {
 
                         } else {
                             txt.setText(null);
-                            txt.setText(Definetab[yaaaaaaa + 1]);
+                            txt.setText(Definetab[count + 1]);
                             addHighlight(txt, Mot, redpainter);
                         }
 
@@ -439,14 +468,6 @@ class Textread {
             }
         });
 
-        WTS.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) ;
-                enter = 1;
-            }
-        });
     }
 
 
@@ -468,18 +489,18 @@ class Textread {
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
         root.removeAllChildren();
         root.add(entree);
-        entree.removeAllChildren();
-        DEFINE.removeAllChildren();
-        ATLASMODULE.removeAllChildren();
-        REQUIRE.removeAllChildren();
-        i = 0;
-        r = 0;
-        nb = 0;
-        nbsous = 0;
-        nbAtlasmodule = 0;
-        nbdefine = 0;
-        nbrequire = 0;
-        nbdrawing = 0;
+        entree.removeAllChildren(); // eneleve les enfants qui concerne ce noeud
+        DEFINE.removeAllChildren(); // eneleve les enfants qui concerne ce noeud
+        ATLASMODULE.removeAllChildren(); // eneleve les enfants qui concerne ce noeud
+        REQUIRE.removeAllChildren(); // eneleve les enfants qui concerne ce noeud
+        i = 0; // remet a 0 cette variable
+        r = 0; // remet a 0 cette variable
+        nb = 0; // remet a 0 cette variable
+        nbsous = 0; // remet a 0 cette variable
+        nbAtlasmodule = 0; // remet a 0 cette variable
+        nbdefine = 0; // remet a 0 cette variable
+        nbrequire = 0; // remet a 0 cette variable
+        nbdrawing = 0; // remet a 0 cette variable
 
         model.reload();
         cleartime = 1;
@@ -506,7 +527,9 @@ class Textread {
 
         try {
             String line;
-            while ((line = readertext.readLine()) != null) {
+            while ((line = readertext.readLine()) != null) { // On stock chaque nouvelle ligne dans la variable line
+
+
                 progressBar1.setValue(progressBar1.getValue() + 1);
 
                 if ((souscode == 0) && (SandEBlock == 1)) {
@@ -579,6 +602,7 @@ class Textread {
                         DefaultMutableTreeNode newPerform = new DefaultMutableTreeNode(decoup[1]);
                         Performdoss[nb].add(newPerform);
                         //System.out.println("NOUVEAU PREMIER  NOEUD");
+
                     } else {
                         for (int child = 0; child < nbperform; child++) {
                             if (decoup[1].equals(Performname[child])) {
@@ -749,9 +773,9 @@ class Textread {
                         number1[i] = getnum1(decoup);             // Utilisation de getnum1(dépend de i)
                         if (number[i] == 0) {                     // En fonction du résultat de getnum2(depend de de i)
                             nb++;
-                            okperf = 1;
+                            okperf = 1;                            // On peut commencer a recherché les performs de ce test
                             oksousper = 0;
-                            subnode[s] = 0;
+                            subnode[s] = 0;                       // il ne s'agit pas d'un sous test
                             txt.append(decoup[1] + "\n");         // Affichage du nom du test dans la zone de text
                             txt.append(line + "\n");            // Affichage de la ligne en entier dans la zone de text
                             txt.append(number[i] + "\n");         // Affichage du retour de la fonction getnum2 (depend de i)
@@ -853,15 +877,11 @@ class Textread {
         DefaultTreeModel model = (DefaultTreeModel) TREE.getModel();
         DefaultMutableTreeNode etr = new DefaultMutableTreeNode();
 
-
-        if (i == 0) {
-            etr = new DefaultMutableTreeNode(test[i]);
-        } else {
-            etr = new DefaultMutableTreeNode(test[i]);
-        }
+        etr = new DefaultMutableTreeNode(test[i]); // Création d'un noeud avec le nom du test
         if (!test[i].trim().equals("")) {
             entree.add(etr);
             model.reload();
+
             if (i != 0) {
                 addperf(etr, Performdoss, nb);
             }
@@ -921,6 +941,8 @@ class Textread {
                     }
                 }
             }
+
+            if (V == testnodetext)System.out.println(testnodetext);
 
             System.out.println("Nbnoeud, nbsousnoeud, AtlasModule, Define, Require, Drawing, Perform");
             System.out.println(i + "," + maxr + "," + nbAtlasmodule + "," + nbFdefinie + "," + nbrequire + "," + nbdrawing + "," + nbperforms);
@@ -984,7 +1006,6 @@ class Textread {
                         DefaultTreeModel model = (DefaultTreeModel) TREE.getModel();
                         newinfo[r] = new DefaultMutableTreeNode(undernode[r]);
                         V.add(newinfo[r]);
-                        //newinfo[r].add(Performsousdoss[nbsous+1]);
                         addperf(newinfo[r], Performsousdoss, nbsous);
                         model.reload();
                         r++;
@@ -1000,6 +1021,8 @@ class Textread {
                     if (presenceAtlasmodule == 1) V.add(ATLASMODULE);
                     if (presencerequire == 1) V.add(REQUIRE);
                     if (presencedrawing == 1) V.add(Drawing);
+                    V.add(testnode);
+                    testnode.add(testnodete);
                 }
                 s++;
 
@@ -1129,7 +1152,7 @@ class Textread {
     }
 
 
-    public void Searching(String name){
+    public DefaultMutableTreeNode Searching(String name){
 
         String search = name;
         if (search.trim().length() > 0) {
@@ -1139,7 +1162,12 @@ class Textread {
                 TreePath path = new TreePath(node.getPath());
                 TREE.setSelectionPath(path);
                 TREE.scrollPathToVisible(path);
+                node.setAllowsChildren(flagged=true);
+
             }
         }
+        return node;
     }
+
+
     }
