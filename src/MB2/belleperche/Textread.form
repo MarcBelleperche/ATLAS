@@ -45,25 +45,7 @@
           <grid row="0" column="12" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Analysis"/>
-        </properties>
-      </component>
-      <component id="206e4" class="javax.swing.JButton" binding="ADD">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Fill the Tree"/>
-        </properties>
-      </component>
-      <component id="2bfa4" class="javax.swing.JButton" binding="Textread">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <actionCommand value="Check"/>
-          <font/>
-          <text value="Check"/>
+          <text value="Analyse"/>
         </properties>
       </component>
       <component id="59cd4" class="javax.swing.JButton" binding="Search">
@@ -79,7 +61,7 @@
           <grid row="2" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value=" Surligner un mot"/>
+          <text value="Highlight your word"/>
         </properties>
       </component>
       <component id="ff9ab" class="javax.swing.JButton" binding="Help">
@@ -106,7 +88,7 @@
           <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="    Comment/Perform"/>
+          <text value="    Comment"/>
         </properties>
       </component>
       <component id="b7d9f" class="javax.swing.JCheckBox" binding="Comment">
@@ -138,7 +120,7 @@
           <grid row="2" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Define"/>
+          <text value="Procedure"/>
         </properties>
       </component>
       <splitpane id="6600c">
@@ -147,7 +129,9 @@
             <preferred-size width="200" height="200"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <dividerLocation value="350"/>
+        </properties>
         <border type="none"/>
         <children>
           <scrollpane id="41333">
@@ -159,7 +143,9 @@
             <children>
               <component id="de6a6" class="javax.swing.JTree" binding="TREE">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <editable value="false"/>
+                </properties>
               </component>
             </children>
           </scrollpane>
@@ -174,12 +160,23 @@
                 <constraints/>
                 <properties>
                   <editable value="false"/>
+                  <text value=""/>
                 </properties>
               </component>
             </children>
           </scrollpane>
         </children>
       </splitpane>
+      <component id="2bfa4" class="javax.swing.JButton" binding="Textread">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <actionCommand value="Check"/>
+          <font/>
+          <text value="Clear ALL"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

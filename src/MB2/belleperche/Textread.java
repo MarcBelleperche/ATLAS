@@ -25,7 +25,6 @@ class Textread {
     private JButton Search;
     JTree TREE;
     private JTextArea txt;
-    private JButton ADD;
     private JProgressBar progressBar1;
     private JButton Help;
     private JTextField WTS;
@@ -41,6 +40,8 @@ int rougir = 0;
 int maxrougir = 0;
 int trouver=0;
 String nomnoeudrougir[] = new String[10000];
+int analyse = 0;
+int recherchenull = 0;
 
 
     //
@@ -66,16 +67,10 @@ String nomnoeudrougir[] = new String[10000];
     int presencedrawing = 0;
     int presencerequire = 0;
     boolean flagged;
-    boolean presencemotrecherche1[] = new boolean[1000];
-    boolean presencemotrecherche2[] = new boolean[1000];
-    boolean presencemotrecherche3[] = new boolean[1000];
-    boolean presencemotrecherche4[] = new boolean[1000];
-    boolean presencemotrecherche5[] = new boolean[1000];
-    boolean presencemotrecherche6[] = new boolean[1000];
     static int nbdefine;
     int nbdrawing = 0;
     int nbrequire = 0;
-    int nbFdefinie = 0;
+    static int nbFdefinie = 0;
     int number[] = new int[100];
     int number1[] = new int[100];
     static int nbperforms;
@@ -132,12 +127,14 @@ String nomnoeudrougir[] = new String[10000];
 
         String Introtext = " \nCette application a pour but de simplifier la lecture des programmes ATLAS \n " +
                 "Abbreviated Test Language for All Systems. Voici les différentes étapes à suivre : \n\n " +
-                "1 : Entrée la path votre fichier \n 2 : Appuyer sur Analysis \n 3 : Appuyer en suite sur" +
-                "fill the Tree \n 4 : Pour afficher les codes correspondants à chaque entrée cliquer sur celles-ci \n\n" +
+                "1 : Entrée la path votre fichier à l'aide du bouton FIND qui vous permet\n de rechercher votre fichier sur votre ordinateur \n 2 : Appuyer sur Analyse ou sur Enter" +
+                "\n 3 : Pour afficher les codes correspondants à chaque entrée cliquer sur celles-ci \n\n" +
                 "Les entrées ayant des sous entrées sont représentées par des dossiers\n Vous pouvez appuyer sur le bouton HELP a tout moment\n" +
-                "Les Perfom seront suligné en Jaune\n\n" +
-                "Si vous chercher un mot rentré le dans le champs en bas\n\n" +
-                "Puis appuyé sur Search pour surligner toutes les occurences de ce mot";
+                "Les Perfom seront suligné en ROUGE par defaut\n\n" +
+                "Si vous souhaitez recherché un mot, tappez le dans le champs en bas puis appuyer sur SEARCH ou Enter.\n\n" +
+                "Les noeud colorés sont les noeuds dont le noeud contient le mot que vous recherchez.\n" +
+                "Si vous souhaiter enlever le surlignage dans l'arbre, il vous suffit de recherche rien.\n" +
+                " Ne tapper rien dans le champs en bas et rechercher.";
         txt.setText(Introtext); // Initialise la zone de texte txt avec le texte d'explication
 
         Cleartree();
@@ -172,199 +169,21 @@ String nomnoeudrougir[] = new String[10000];
         Analisys.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Cleartree();                        // Arbre précédent effacé
-                txt.setText(null);                  // Zone d'affichage de text effacée aussi
-                String get = entrytext.getText();   // Récupération du text entré par l'utilisateur
-                String rorw = "";                   // Définition d'une chaine de caractères
 
-                for (int i = 0; i < get.length(); i++) {
-                    rorw = "Start analyse";
-
-                }
-
-                JOptionPane.showMessageDialog(null, rorw); // Affichage du debut de l'analyse
-
-                String filename = entrytext.getText(); // Stockage du texte entré dans une chaine de caractères
-
-                try {
-                    //scan = new Scanner(new File(filename)); // Recherche du fichier texte
-                    readertext = new BufferedReader(new FileReader(filename));
-
-                } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(null, "Votre fichier est introuvable");
-                }
-
-
-                Affichagewithbuffer();
-
-
-            }
-
+                Lancementanalysefichier();
+                for (int nbfilltree = 0; nbfilltree < 2; nbfilltree++) {
+                    Filltree();}
+        }
         });
+
 
         Search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (WTS.getText().equals("")) {
-                    WTS.setText("VEULLEZ ENTRER UN MOT");
-
-                } else {
-                    rougir = 0;
-                    removeHighlights(txt);
-                    Mot = WTS.getText().toUpperCase();
-                    addHighlight(txt, Mot, redpainter);
-                    searchword = "Occurence du mot " + Mot + " dans les dossiers suivants :";
-                    DefaultMutableTreeNode colord = new DefaultMutableTreeNode();
-
-                    for (int z = 0; z < i; z++) {
-                        if (Mot != null) {
-                            int numb = Affichagetest[z + 1].indexOf(Mot);
-                            if (numb != -1) {
-                                //presencemotrecherche1[z] = true;
-                                String colornode = entree.getChildAt(z).toString();
-                                searchword = searchword + "\n" + colornode;
-                                 //entree.getChildAt(z);
-                                //Searching(test[z]);
-                                colord = (DefaultMutableTreeNode) entree.getChildAt(z);
-                                nomnoeudrougir[rougir] = colord.toString();
-                                rougir++;
-                                if (trouver==0){
-                                    trouver=1;
-                                    colord = entree;
-                                    nomnoeudrougir[rougir] = colord.toString();
-                                    rougir++;
-                                }
-                            }
-
-
-                        }
-                    }
-
-                    for ( z1 = 0; z1 < maxr; z1++) {
-                        if (Mot != null) {
-                            int numb = Affichagesouscode[z1 + 1].indexOf(Mot);
-                            if (numb != -1) {
-                                String colornode = newinfo[z1].toString();
-                                //newinfo[z1]
-                                searchword = searchword + "\n" + colornode;
-                                //colord = Searching(undernode[z1]);
-                                colord = newinfo[z1];
-                                nomnoeudrougir[rougir] = colord.toString();
-                                rougir++;
-                                    colord = (DefaultMutableTreeNode) newinfo[z1].getParent();
-                                    nomnoeudrougir[rougir] = colord.toString();
-                                    rougir++;
-                            }
-                        }
-                    }
-
-                    trouver=0;
-                    for (int z = 0; z < nbFdefinie; z++) {
-                        if (Mot != null) {
-                            int numb = Definetab[z + 1].indexOf(Mot);
-                            if (numb != -1) {
-                                //presencemotrecherche3[z] = true;
-                                String colornode = DEFINE.getChildAt(z).toString();
-                                searchword = searchword + "\n" + DEFINE.toString() + ": " + colornode;
-
-
-                              //colord = Searching(definename[z]);
-                              colord = (DefaultMutableTreeNode) DEFINE.getChildAt(z);
-                              nomnoeudrougir[rougir] = colord.toString();
-                              rougir++;
-                                if (trouver==0){
-                                    trouver=1;
-                                    colord = DEFINE;
-                                    nomnoeudrougir[rougir] = colord.toString();
-                                    rougir++;
-                                }
-                                }
-                        }
-                        }
-
-                        trouver=0;
-                    for (int z = 0; z < nbAtlasmodule; z++) {
-                        if (Mot != null) {
-                            int numb = Alasmoduletab[z + 1].indexOf(Mot);
-                            if (numb != -1) {
-                                //presencemotrecherche4[z] = true;
-                                String colornode = ATLASMODULE.getChildAt(z).toString();
-                                searchword = searchword + "\n" + ATLASMODULE.toString() + ": " + colornode;
-                               //Searching(Atlasmodulename[z]);
-                                colord = (DefaultMutableTreeNode) ATLASMODULE.getChildAt(z);
-                                nomnoeudrougir[rougir] = colord.toString();
-                                rougir++;
-                                if (trouver==0){
-                                    trouver=1;
-                                    colord = ATLASMODULE;
-                                    nomnoeudrougir[rougir] = colord.toString();
-                                    rougir++;
-                                }
-                            }
-                        }
-                    }
-
-                    trouver=0;
-                    for (int z = 0; z < nbrequire; z++) {
-                        if (Mot != null) {
-                            int numb = Requirecode[z + 1].indexOf(Mot);
-                            if (numb != -1) {
-                                //presencemotrecherche5[z] = true;
-                                String colornode = REQUIRE.getChildAt(z).toString();
-                                searchword = searchword + "\n" + REQUIRE.toString() + ": " + colornode;
-                               // Searching(Requirename[z]);
-                                colord = (DefaultMutableTreeNode) REQUIRE.getChildAt(z);
-                                nomnoeudrougir[rougir] = colord.toString();
-                                rougir++;
-                                if (trouver==0){
-                                    trouver=1;
-                                    colord = REQUIRE;
-                                    nomnoeudrougir[rougir] = colord.toString();
-                                    rougir++;
-                                }
-                            }
-                        }
-                    }
-
-                    trouver=0;
-                    for (int z = 0; z < nbdrawing; z++) {
-                        if (Mot != null) {
-                            int numb = Drawingcode[z + 1].indexOf(Mot);
-                            if (numb != -1) {
-                                //presencemotrecherche6[z] = true;
-                                String colornode = Drawing.getChildAt(z).toString();
-                                searchword = searchword + "\n" + Drawing.toString() + ": " + colornode;
-                                //Searching(Drawingname[z]);
-                                colord = (DefaultMutableTreeNode) Drawing.getChildAt(z);
-                                nomnoeudrougir[rougir] = colord.toString();
-                                rougir++;
-                                if (trouver==0){
-                                    trouver=1;
-                                    colord = Drawing;
-                                    nomnoeudrougir[rougir] = colord.toString();
-                                    rougir++;
-                                }
-                            }
-                        }
-                    }
-
-
-
-
-                    JFrame frame3 = new JFrame("Perform/Define");
-                    frame3.setContentPane(new Searchword().Findpanel);
-                    frame3.pack();
-                    frame3.setVisible(true);
-                    frame3.setSize(800, 400);
-                    frame3.setLocationRelativeTo(null);
-
-                    Searchword searchword = new Searchword();
-
-                }
-
-                maxrougir = rougir;
+                recherchedemot();
             }
         });
+
 
         TREE.setCellRenderer(new DefaultTreeCellRenderer() {
             @Override
@@ -373,7 +192,13 @@ String nomnoeudrougir[] = new String[10000];
                 JComponent c = (JComponent) super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
                 String data = (String) node.getUserObject();
-                for (int youyou = 0; youyou < maxrougir; youyou++) {
+                if((analyse ==1)||(recherchenull==1)){
+                    setTextSelectionColor(Color.white);
+                    c.setBackground(null);
+                    c.setOpaque(false);
+                }
+                else if (analyse==0){
+                    for (int youyou = 0; youyou < maxrougir; youyou++) {
                     if (nomnoeudrougir[youyou].equals(data)) {
                         c.setBackground(Color.YELLOW);
                         c.setOpaque(true);
@@ -383,21 +208,9 @@ String nomnoeudrougir[] = new String[10000];
                         c.setBackground(null);
                         c.setOpaque(false);
                     }
-                }
+                }}
                     return c;
             }
-        });
-
-
-
-        ADD.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (int nbfilltree = 0; nbfilltree < 2; nbfilltree++) {
-                    Filltree();
-                }
-            }
-
         });
 
 
@@ -515,6 +328,27 @@ String nomnoeudrougir[] = new String[10000];
             }
         });
 
+        WTS.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (e.getKeyChar() == KeyEvent.VK_ENTER){
+                    recherchedemot();
+                }
+            }
+        });
+
+        entrytext.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (e.getKeyChar() == KeyEvent.VK_ENTER){
+                    Lancementanalysefichier();
+                    for (int nbfilltree = 0; nbfilltree < 2; nbfilltree++) {
+                        Filltree();}
+                }
+            }
+        });
     }
 
 
@@ -536,10 +370,11 @@ String nomnoeudrougir[] = new String[10000];
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
         root.removeAllChildren();
         root.add(entree);
-        entree.removeAllChildren(); // eneleve les enfants qui concerne ce noeud
-        DEFINE.removeAllChildren(); // eneleve les enfants qui concerne ce noeud
-        ATLASMODULE.removeAllChildren(); // eneleve les enfants qui concerne ce noeud
-        REQUIRE.removeAllChildren(); // eneleve les enfants qui concerne ce noeud
+        entree.removeAllChildren(); // enleve les enfants qui concerne ce noeud
+        DEFINE.removeAllChildren(); // enleve les enfants qui concerne ce noeud
+        ATLASMODULE.removeAllChildren(); // enleve les enfants qui concerne ce noeud
+        REQUIRE.removeAllChildren(); // enleve les enfants qui concerne ce noeud
+        Drawing.removeAllChildren(); // enleve les enfants qui concerne ce noeud
         i = 0; // remet a 0 cette variable
         r = 0; // remet a 0 cette variable
         nb = 0; // remet a 0 cette variable
@@ -1215,5 +1050,210 @@ String nomnoeudrougir[] = new String[10000];
         return node;
     }
 
+    public void recherchedemot(){
+        if (WTS.getText().equals("")) {
+            WTS.setText("VEULLEZ ENTRER UN MOT");
+            recherchenull =1;
+
+        } else {
+            recherchenull =0;
+            analyse = 0;
+            rougir = 0;
+            removeHighlights(txt);
+            Mot = WTS.getText().toUpperCase();
+            addHighlight(txt, Mot, redpainter);
+            searchword = "Occurence du mot " + Mot + " dans les dossiers suivants :";
+            DefaultMutableTreeNode colord = new DefaultMutableTreeNode();
+
+            for (int z = 0; z < i; z++) {
+                if (Mot != null) {
+                    int numb = Affichagetest[z + 1].indexOf(Mot);
+                    if (numb != -1) {
+                        String colornode = entree.getChildAt(z).toString();
+                        searchword = searchword + "\n" + colornode;
+                        //Searching(test[z]);
+                        colord = (DefaultMutableTreeNode) entree.getChildAt(z);
+                        nomnoeudrougir[rougir] = colord.toString();
+                        rougir++;
+                        if (trouver==0){
+                            trouver=1;
+                            colord = entree;
+                            nomnoeudrougir[rougir] = colord.toString();
+                            rougir++;
+                        }
+                    }
+
+
+                }
+            }
+
+            for ( z1 = 0; z1 < maxr; z1++) {
+                if (Mot != null) {
+                    int numb = Affichagesouscode[z1 + 1].indexOf(Mot);
+                    if (numb != -1) {
+                        String colornode = newinfo[z1].toString();
+                        searchword = searchword + "\n" + colornode;
+                        //colord = Searching(undernode[z1]);
+                        colord = newinfo[z1];
+                        nomnoeudrougir[rougir] = colord.toString();
+                        rougir++;
+                        colord = (DefaultMutableTreeNode) newinfo[z1].getParent();
+                        nomnoeudrougir[rougir] = colord.toString();
+                        rougir++;
+
+                    }
+                }
+            }
+
+            trouver=0;
+            for (int z = 0; z < nbFdefinie; z++) {
+                if (Mot != null) {
+                    int numb = Definetab[z + 1].indexOf(Mot);
+                    if (numb != -1) {
+                        String colornode = DEFINE.getChildAt(z).toString();
+                        searchword = searchword + "\n" + DEFINE.toString() + ": " + colornode;
+                        //colord = Searching(definename[z]);
+                        colord = (DefaultMutableTreeNode) DEFINE.getChildAt(z);
+                        nomnoeudrougir[rougir] = colord.toString();
+                        rougir++;
+                        if (trouver==0){
+                            trouver=1;
+                            colord = DEFINE;
+                            nomnoeudrougir[rougir] = colord.toString();
+                            rougir++;
+                        }
+                    }
+                }
+            }
+
+            trouver=0;
+            for (int z = 0; z < nbAtlasmodule; z++) {
+                if (Mot != null) {
+                    int numb = Alasmoduletab[z + 1].indexOf(Mot);
+                    if (numb != -1) {
+                        String colornode = ATLASMODULE.getChildAt(z).toString();
+                        searchword = searchword + "\n" + ATLASMODULE.toString() + ": " + colornode;
+                        //Searching(Atlasmodulename[z]);
+                        colord = (DefaultMutableTreeNode) ATLASMODULE.getChildAt(z);
+                        nomnoeudrougir[rougir] = colord.toString();
+                        rougir++;
+                        if (trouver==0){
+                            trouver=1;
+                            colord = ATLASMODULE;
+                            nomnoeudrougir[rougir] = colord.toString();
+                            rougir++;
+                        }
+                    }
+                }
+            }
+
+            trouver=0;
+            for (int z = 0; z < nbrequire; z++) {
+                if (Mot != null) {
+                    int numb = Requirecode[z + 1].indexOf(Mot);
+                    if (numb != -1) {
+                        String colornode = REQUIRE.getChildAt(z).toString();
+                        searchword = searchword + "\n" + REQUIRE.toString() + ": " + colornode;
+                        // Searching(Requirename[z]);
+                        colord = (DefaultMutableTreeNode) REQUIRE.getChildAt(z);
+                        nomnoeudrougir[rougir] = colord.toString();
+                        rougir++;
+                        if (trouver==0){
+                            trouver=1;
+                            colord = REQUIRE;
+                            nomnoeudrougir[rougir] = colord.toString();
+                            rougir++;
+                        }
+                    }
+                }
+            }
+
+            trouver=0;
+            for (int z = 0; z < nbdrawing; z++) {
+                if (Mot != null) {
+                    int numb = Drawingcode[z + 1].indexOf(Mot);
+                    if (numb != -1) {
+                        //presencemotrecherche6[z] = true;
+                        String colornode = Drawing.getChildAt(z).toString();
+                        searchword = searchword + "\n" + Drawing.toString() + ": " + colornode;
+                        //Searching(Drawingname[z]);
+                        colord = (DefaultMutableTreeNode) Drawing.getChildAt(z);
+                        nomnoeudrougir[rougir] = colord.toString();
+                        rougir++;
+                        if (trouver==0){
+                            trouver=1;
+                            colord = Drawing;
+                            nomnoeudrougir[rougir] = colord.toString();
+                            rougir++;
+                        }
+                    }
+                }
+            }
+
+            for (int z = 0; z < maxsousnb; z++) {
+                DefaultMutableTreeNode Perform = Performsousdoss[z + 1];
+                for (int a = 0; a < Perform.getChildCount(); a++) {
+                        for (int per = 0; per < nbFdefinie; per++) {
+                            String definetitle = definename[per];
+                            int you = Performsousdoss[z + 1].getChildAt(a).toString().indexOf(definetitle);
+                            if (you == -1) {
+                            } else {
+                                if (Mot != null) {
+                                    int numb = Definetab[per + 1].indexOf(Mot);
+                                    if (numb != -1) {
+                                        nomnoeudrougir[rougir] = newinfo[z].toString();
+                                        rougir++;
+                                    }
+                                }
+                            }
+                        }
+                }
+            }
+
+
+
+            JFrame frame3 = new JFrame("Perform/Define");
+            frame3.setContentPane(new Searchword().Findpanel);
+            frame3.pack();
+            frame3.setVisible(true);
+            frame3.setSize(800, 400);
+            frame3.setLocationRelativeTo(null);
+
+            Searchword searchword = new Searchword();
+
+        }
+
+        maxrougir = rougir;
+    }
+
+    public void Lancementanalysefichier(){
+        Cleartree();                        // Arbre précédent effacé
+        txt.setText(null);                  // Zone d'affichage de text effacée aussi
+        String get = entrytext.getText();   // Récupération du text entré par l'utilisateur
+        String rorw = "";                   // Définition d'une chaine de caractères
+        analyse = 1;
+
+        for (int i = 0; i < get.length(); i++) {
+            rorw = "Start analyse";
+
+        }
+
+        JOptionPane.showMessageDialog(null, rorw); // Affichage du debut de l'analyse
+
+        String filename = entrytext.getText(); // Stockage du texte entré dans une chaine de caractères
+
+        try {
+            //scan = new Scanner(new File(filename)); // Recherche du fichier texte
+            readertext = new BufferedReader(new FileReader(filename));
+
+        } catch (Exception e1) {
+            JOptionPane.showMessageDialog(null, "Votre fichier est introuvable");
+        }
+
+
+        Affichagewithbuffer();
+
+
+    }
 
 }
