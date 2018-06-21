@@ -281,6 +281,7 @@ int recherchenull = 0;
                             txt.setText(null);
                             txt.setText(Definetab[count + 1]);
                             addHighlight(txt, Mot, redpainter);
+                            Comment.isSelected();
                         }
 
 
@@ -304,6 +305,7 @@ int recherchenull = 0;
                             txt.setText(null);
                             txt.setText(Definetab[count + 1]);
                             addHighlight(txt, Mot, redpainter);
+                            Comment.isSelected();
                         }
 
 
@@ -337,6 +339,7 @@ int recherchenull = 0;
                 }
             }
         });
+
 
         entrytext.addKeyListener(new KeyAdapter() {
             @Override
@@ -768,7 +771,7 @@ int recherchenull = 0;
                 addperf(etr, Performdoss, nb);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "It doesn't Work MOTHERFUCKER");
+            JOptionPane.showMessageDialog(null, "Doesn't work find another way");
         }
 
         nb++;
@@ -829,7 +832,6 @@ int recherchenull = 0;
 
             System.out.println("Nbnoeud, nbsousnoeud, AtlasModule, Define, Require, Drawing, Perform");
             System.out.println(i + "," + maxr + "," + nbAtlasmodule + "," + nbFdefinie + "," + nbrequire + "," + nbdrawing + "," + nbperforms);
-
 
         }
     }
@@ -1053,9 +1055,9 @@ int recherchenull = 0;
     public void recherchedemot(){
         if (WTS.getText().equals("")) {
             WTS.setText("VEULLEZ ENTRER UN MOT");
-            recherchenull =1;
+            recherchenull =1;}
 
-        } else {
+            else {
             recherchenull =0;
             analyse = 0;
             rougir = 0;
@@ -1210,7 +1212,25 @@ int recherchenull = 0;
                 }
             }
 
-
+            for (int z = 0; z < maxnb; z++) {
+                DefaultMutableTreeNode Perform = Performdoss[z + 1];
+                for (int a = 0; a < Perform.getChildCount(); a++) {
+                    for (int per = 0; per < nbFdefinie; per++) {
+                        String definetitle = definename[per];
+                        int you = Performdoss[z + 1].getChildAt(a).toString().indexOf(definetitle);
+                        if (you == -1) {}
+                        else {
+                            if (Mot != null) {
+                                int numb = Definetab[per + 1].indexOf(Mot);
+                                if (numb != -1) {
+                                    nomnoeudrougir[rougir] = entree.getChildAt(z).toString();
+                                    rougir++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             JFrame frame3 = new JFrame("Perform/Define");
             frame3.setContentPane(new Searchword().Findpanel);
@@ -1234,7 +1254,7 @@ int recherchenull = 0;
         analyse = 1;
 
         for (int i = 0; i < get.length(); i++) {
-            rorw = "Start analyse";
+            rorw = "Start analyse";         // Message ayant pour but d'informer que la lecture à commencer
 
         }
 
@@ -1243,8 +1263,8 @@ int recherchenull = 0;
         String filename = entrytext.getText(); // Stockage du texte entré dans une chaine de caractères
 
         try {
-            //scan = new Scanner(new File(filename)); // Recherche du fichier texte
-            readertext = new BufferedReader(new FileReader(filename));
+            //scan = new Scanner(new File(filename)); // Recherche du fichier texte avc un scan
+            readertext = new BufferedReader(new FileReader(filename)); // Recherche du fichier texte avec un Buffer
 
         } catch (Exception e1) {
             JOptionPane.showMessageDialog(null, "Votre fichier est introuvable");
@@ -1252,8 +1272,6 @@ int recherchenull = 0;
 
 
         Affichagewithbuffer();
-
-
     }
 
 }
