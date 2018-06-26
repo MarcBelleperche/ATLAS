@@ -28,13 +28,11 @@ class Textread {
     private JProgressBar progressBar1;
     private JButton Help;
     private JTextField WTS;
-    private JButton LightDark;
     private JCheckBox Comment;
     private JButton DefineFrame;
     private JButton back;
     private JButton SearchFile;
     private BufferedReader readertext;
-
     //
 int rougir = 0;
 int maxrougir = 0;
@@ -42,11 +40,7 @@ int trouver=0;
 String nomnoeudrougir[] = new String[10000];
 int analyse = 0;
 int recherchenull = 0;
-
-
     //
-
-
     int z1=0;
     int nbperform = 0;
     int nb = 0;
@@ -56,7 +50,7 @@ int recherchenull = 0;
     int nbAtlasmodule = 0;
     int i = 0;
     int r = 0;
-    int subnode[] = new int[100];
+    int subnode[] = new int[1000];
     int s = 0;
     int maxr = 0;
     int maxnb = 0;
@@ -67,17 +61,17 @@ int recherchenull = 0;
     int presencedrawing = 0;
     int presencerequire = 0;
     boolean flagged;
-    static int nbdefine;
+    int nbdefine;
     int nbdrawing = 0;
     int nbrequire = 0;
     static int nbFdefinie = 0;
-    int number[] = new int[100];
-    int number1[] = new int[100];
+    int number[] = new int[10000];
+    int number1[] = new int[10000];
     static int nbperforms;
     static String Mot = "PERFORM";
     String test[] = new String[1000];
     String undernode[] = new String[1000];
-    String Affichagetest[] = new String[1000];
+    String Affichagetest[] = new String[1000]; // Stockage du code associé au test
     String Drawingname[] = new String[1000];
     String Drawingcode[] = new String[1000];
     String Alasmoduletab[] = new String[1000];
@@ -175,6 +169,7 @@ int recherchenull = 0;
                     Filltree();}
         }
         });
+
 
 
         Search.addActionListener(new ActionListener() {
@@ -352,8 +347,8 @@ int recherchenull = 0;
                 }
             }
         });
-    }
 
+    }
 
     public static void main(String[] args) {
 
@@ -395,6 +390,7 @@ int recherchenull = 0;
     public void Affichagewithbuffer() {
 
         String code = "TITRE\n";                            // Definition d'une chaine de caractère
+        String codesous = "";
         String codedef = "FIRST DEFINE\n";
         String codeAtlasmodule = "ATLAS MODULE\n";
         String coderequire = "ATLAS REQUIRE\n";
@@ -403,12 +399,15 @@ int recherchenull = 0;
         int SandEdefine = 0;
         int SandEAtlasmodule = 0;
         int SandEBlock = 0;
+        int SandEsousBlock = 0;
         int SandErequire = 0;
         int waitforprocedure = 0;
         int waitfordrawing = 0;
         int waitforperform = 0;
         int waitforsousperform = 0;
         int SandEdrawing = 0;
+        int enfant = 0;
+        int stopadd = 0;
 
         try {
             String line;
@@ -417,20 +416,20 @@ int recherchenull = 0;
 
                 progressBar1.setValue(progressBar1.getValue() + 1);
 
-                if ((souscode == 0) && (SandEBlock == 1)) {
+                if ((SandEBlock == 1)) {
                     code = code + "\n" + line;
                     Affichagetest[i] = code;                        // On rentre dans un tableau le code correspondant
-
-                } else if ((souscode == 1) && (SandEBlock == 1)) {
-                    code = code + "\n" + line;
-                    Affichagesouscode[r] = code;                // On rentre dans un tableau le code correspondant
+                }
+                if ((SandEsousBlock == 1)&&(souscode == 1)) {
+                    codesous = codesous + "\n" + line;
+                    Affichagesouscode[r] = codesous;                // On rentre dans un tableau le code correspondant
                 }
 
 
-                if (line.matches(".*END, BLOCK, '.*")) {
-                    SandEBlock = 0;
-                    okperf = 0;
-                    oksousper = 0;
+                if (line.matches(".*END, BLOCK,.*")||line.matches(".*END,  BLOCK,.*")||line.matches(".*END,   BLOCK,.*")) {
+                    if (enfant ==2){SandEBlock = 0;okperf = 0;enfant =1;}
+                    else if (enfant > 3){enfant --;}
+                    else if (enfant > 2){SandEsousBlock = 0;oksousper = 0;enfant = 2;}
                 }
 
                 if (SandEdefine == 1) {
@@ -615,9 +614,7 @@ int recherchenull = 0;
                     nb++;
                     okperf = 1;
                     decoup = line.split("\\'");       // On découpe la ligne tout les '
-                    number[i] = getnum2(decoup);              // Utilisation de getnum2(dépend de i)
-                    number1[i] = getnum1(decoup);             // Utilisation de getnum1(dépend de i)
-                    if (number[i] == 0) {                     // En fonction du résultat de getnum2(depend de de i)
+                    if (enfant==2) {                     // En fonction du résultat de getnum2(depend de de i)
                         subnode[s] = 0;
                         txt.append(decoup[1] + "\n");         // Affichage du nom du test dans la zone de text
                         txt.append(line + "\n");            // Affichage de la ligne en entier dans la zone de text
@@ -651,12 +648,13 @@ int recherchenull = 0;
                         nbAtlasmodule++;
 
 
-                    } else if ((line.matches(".*BEGIN, BLOCK, '.*") || line.matches(".*BEGIN, ATLAS PROGRAM '.*"))) {
+                    } else if ((line.matches(".*BEGIN, BLOCK, '.*") || line.matches(".*BEGIN, ATLAS PROGRAM '.*")|| line.matches(".*BEGIN,  BLOCK, '.*"))) {
                         souscode = 0;                               // souscode remis à 0
                         decoup = line.split("\\'");       // On découpe la ligne tout les '
-                        number[i] = getnum2(decoup);              // Utilisation de getnum2(dépend de i)
-                        number1[i] = getnum1(decoup);             // Utilisation de getnum1(dépend de i)
-                        if (number[i] == 0) {                     // En fonction du résultat de getnum2(depend de de i)
+                        enfant ++;
+                        if (enfant > 3){}
+                        else{
+                            if (enfant==1||enfant==2) {                     // En fonction du résultat de getnum2(depend de de i)
                             nb++;
                             okperf = 1;                            // On peut commencer a recherché les performs de ce test
                             oksousper = 0;
@@ -679,7 +677,8 @@ int recherchenull = 0;
                                 Performname[nbn] = null;
                             }
                             nbperform = 0;
-                        } else if (number[i] != 0) {
+
+                        } else if (enfant>2) {
                             nbsous++;
                             okperf = 0;
                             oksousper = 1;
@@ -689,8 +688,8 @@ int recherchenull = 0;
                             txt.append(decoup[1] + "\n");
                             txt.append(line + "\n");
                             txt.append(number[i] + "\n");
-                            SandEBlock = 1;
-                            code = "TEST " + (number1[i]) + "." + (number[i]); // On réinitialise la variable code
+                            SandEsousBlock = 1;
+                            codesous = "TEST " + (number1[i]) + "."; // On réinitialise la variable code
                             System.out.println(undernode[r]);
                             Performsousdoss[nbsous] = new DefaultMutableTreeNode("PROCEDURE");
                             for (int nbn = 0; nbn < nbperform; nbn++) {
@@ -706,7 +705,7 @@ int recherchenull = 0;
 
                     }
 
-                }
+                }}
             }
 
             nbFdefinie = nbdefine;
@@ -723,7 +722,7 @@ int recherchenull = 0;
     }
 
 
-    public int getnum1(String tab[]) {
+   /* public int getnum1(String tab[]) {
         int n = 0;
 
         String prenum = tab[1];
@@ -754,7 +753,7 @@ int recherchenull = 0;
         }
 
         return m;
-    }
+    }*/
 
 
     private DefaultMutableTreeNode Addanode(int i) {
@@ -1269,7 +1268,6 @@ int recherchenull = 0;
         } catch (Exception e1) {
             JOptionPane.showMessageDialog(null, "Votre fichier est introuvable");
         }
-
 
         Affichagewithbuffer();
     }
